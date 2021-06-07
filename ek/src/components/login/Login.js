@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import ErrorMessage from '../commons/ErrorMessage';
 
 function Login() {
   const[userNameToggle, setUserNameToggle] = useState(false);
   const[passwordToggle, setPasswordToggle] = useState(false);
   const[rememberMeToggle, setRememberMeToggle] = useState(false);
   const[hasError, sethasError] = useState(false);
+  const[errorMessages, setErrorMessages] = useState([]);
   const[userName, setUserName] = useState('');
   const[password, setPassword] = useState('');
   function onUserNameToggle(e)
@@ -23,7 +25,24 @@ function Login() {
   }
   function login()
   {
-    userName = "login";
+    setErrorMessages([]);
+    
+    if(!userName)
+    {      
+      setErrorMessages(state => [...state, "Email address or Emirates Skywards number: This is a mandatory field, please check and try again. "]);
+    }
+    if(!password)
+    {      
+      setErrorMessages(state => [...state, "Password: This is a mandatory field, please check and try again. "]);
+    }
+    return !errorMessages.length > 0;
+  }
+  function handleSubmit(e)
+  {    
+    if(!login())
+    {
+      e.preventDefault();
+    }
   }
   return (
     <div aria-live="polite">
@@ -32,9 +51,9 @@ function Login() {
           <div className="split login-central__split">
             <div className="split__left login-central__split-left">
               <section className="login-form__container">
-                <h2 className="login-form__heading">Login</h2>
-                <div aria-live="off" className={`login-error login-form__error ${hasError ? '' : 'hidden'}`}><p class="nofocus">Password: This is a mandatory field, please check and try again. </p></div>
-                <form>
+                <h2 className="login-form__heading">Login</h2>                
+                <ErrorMessage messages={errorMessages} />
+                <form onSubmit={handleSubmit}>
                   <div className="login-form__form-field">
                     <span className={`input-field ${userNameToggle || userName != '' ? 'input-field--active' : ''}`}>
                       <input name="username" type="hidden" value={userName}/>
