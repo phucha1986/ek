@@ -4,9 +4,11 @@ function Login() {
   const[userNameToggle, setUserNameToggle] = useState(false);
   const[passwordToggle, setPasswordToggle] = useState(false);
   const[rememberMeToggle, setRememberMeToggle] = useState(false);
-  function onUserNameToggle()
+  const[hasError, sethasError] = useState(false);
+  const[userName, setUserName] = useState('');
+  function onUserNameToggle(e)
   {
-    setUserNameToggle(!userNameToggle);
+    setUserNameToggle(!userNameToggle);    
   }
   
   function onPasswordToggle()
@@ -18,6 +20,14 @@ function Login() {
   {
     setRememberMeToggle(!rememberMeToggle);
   }
+  function login()
+  {
+
+  }
+  function onSetUserName(e)
+  {
+    setUserName(e.target.value);
+  }
   return (
     <div aria-live="polite">
       <div>
@@ -26,12 +36,13 @@ function Login() {
             <div className="split__left login-central__split-left">
               <section className="login-form__container">
                 <h2 className="login-form__heading">Login</h2>
+                <div aria-live="off" className={`login-error login-form__error ${hasError ? '' : 'hidden'}`}><p class="nofocus">Password: This is a mandatory field, please check and try again. </p></div>
                 <form>
                   <div className="login-form__form-field">
                     <span className={`input-field ${userNameToggle ? 'input-field--active' : ''}`}>
-                      <input name="username" type="hidden" value=""/>
+                      <input name="username" type="hidden" value={userName}/>
                       <span className="input-field__field">
-                        <input aria-labelledby="sso-email_label" className="input-field__input ellipsis" for="email" pattern="^\s*((EK|ek|Ek|eK)\s*(\d\s*){9}|00\s*(\d\s*){9}|(\d\s*){9}|.+@.+\..+)$" required="" aria-required="true" id="sso-email" type="text" autocomplete="off" value="" onFocus={onUserNameToggle} onBlur={onUserNameToggle}/>
+                        <input aria-labelledby="sso-email_label" className="input-field__input ellipsis" for="email"  id="sso-email" type="text" autocomplete="off" value="" onFocus={onUserNameToggle} onBlur={onUserNameToggle} onChange={(e) => setUserName(e.target.value)}/>
                       </span>
                       <label for="sso-email" id="sso-email_label" className="input-field__placeholder">Email or Emirates Skywards number</label>
                     </span>
@@ -59,9 +70,9 @@ function Login() {
                     </div>
                   </div>
                   <div className="login-form__action-btn">
-                    <button id="login-button" aria-disabled="false" type="submit" className="call-to-action call-to-action__primary call-to-action--middle">Đăng nhập</button>
+                    <button id="login-button" aria-disabled="false" type="submit" className="call-to-action call-to-action__primary call-to-action--middle" onClick={login}>Login</button>
                   </div>
-                </form></section></div><div className="split__or-line login-central__or-line"><img title="" alt="" className="split__or login-central__or" aria-hidden="false" src="https://c.ekstatic.net/account/uiassets/or.svg"/></div><div className="split__right login-central__split-right"><div><div className="skywards-form"><section className="skywards-form__second-part-container"><h2 className="skywards-form__title">Chưa phải là hội viên Emirates Skywards?</h2><div><div className="skywards-form__text"><p>Đăng ký ngay để tận dụng tối ưu từng dặm với <a data-id="pagebody_link" data-link="Emirates Skywards" title="Emirates Skywards" href="/account/vn/vietnamese/light-registration/?section=MYA&amp;th=8dc2ce9d13387344e461cf5bbacb6861f7c4731d" className="link link--with-hover-bg link--default link--underline skywards-form__link"><span className="link__text link__text--underline">Emirates Skywards</span></a></p></div></div><a data-id="pagebody_cta" data-link="Register now" title="Tham gia ngay" href="/account/vn/vietnamese/light-registration/?section=MYA&amp;th=8dc2ce9d13387344e461cf5bbacb6861f7c4731d&amp;refurl=%2Fvn%2Fvietnamese" className="link link--default skywards-form__register-now call-to-action call-to-action__secondary call-to-action--middle"><span className="link__text">Tham gia ngay</span></a></section></div></div></div></div></div></div></div>
+                </form></section></div><div className="split__or-line login-central__or-line"><img title="" alt="" className="split__or login-central__or" aria-hidden="false" src="https://c.ekstatic.net/account/uiassets/or.svg"/></div><div className="split__right login-central__split-right"><div><div className="skywards-form"><section className="skywards-form__second-part-container"><h2 className="skywards-form__title">Not an Emirates Skywards member yet?</h2><div><div className="skywards-form__text"><p>Register now to make the most of every mile with <a data-id="pagebody_link" data-link="Emirates Skywards" title="Emirates Skywards" href="/account/vn/vietnamese/light-registration/?section=MYA&amp;th=8dc2ce9d13387344e461cf5bbacb6861f7c4731d" className="link link--with-hover-bg link--default link--underline skywards-form__link"><span className="link__text link__text--underline">Emirates Skywards</span></a></p></div></div><a data-id="pagebody_cta" data-link="Register now" title="Tham gia ngay" href="/account/vn/vietnamese/light-registration/?section=MYA&amp;th=8dc2ce9d13387344e461cf5bbacb6861f7c4731d&amp;refurl=%2Fvn%2Fvietnamese" className="link link--default skywards-form__register-now call-to-action call-to-action__secondary call-to-action--middle"><span className="link__text">Join now</span></a></section></div></div></div></div></div></div></div>
 
     
   );
