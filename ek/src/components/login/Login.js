@@ -1,7 +1,23 @@
 import React, { useState } from 'react';
 
 function Login() {
-  let userNameToggle = useState(false);
+  const[userNameToggle, setUserNameToggle] = useState(false);
+  const[passwordToggle, setPasswordToggle] = useState(false);
+  const[rememberMeToggle, setRememberMeToggle] = useState(false);
+  function onUserNameToggle()
+  {
+    setUserNameToggle(!userNameToggle);
+  }
+  
+  function onPasswordToggle()
+  {
+    setPasswordToggle(!passwordToggle);
+  }
+
+  function onRememberMeToggle()
+  {
+    setRememberMeToggle(!rememberMeToggle);
+  }
   return (
     <div aria-live="polite">
       <div>
@@ -12,10 +28,10 @@ function Login() {
                 <h2 className="login-form__heading">Login</h2>
                 <form>
                   <div className="login-form__form-field">
-                    <span className={`input-field  + ${userNameToggle ? 'input-field--active' : ''}`}>
+                    <span className={`input-field ${userNameToggle ? 'input-field--active' : ''}`}>
                       <input name="username" type="hidden" value=""/>
                       <span className="input-field__field">
-                        <input aria-labelledby="sso-email_label" className="input-field__input ellipsis" for="email" pattern="^\s*((EK|ek|Ek|eK)\s*(\d\s*){9}|00\s*(\d\s*){9}|(\d\s*){9}|.+@.+\..+)$" required="" aria-required="true" id="sso-email" type="text" autocomplete="off" value=""/>
+                        <input aria-labelledby="sso-email_label" className="input-field__input ellipsis" for="email" pattern="^\s*((EK|ek|Ek|eK)\s*(\d\s*){9}|00\s*(\d\s*){9}|(\d\s*){9}|.+@.+\..+)$" required="" aria-required="true" id="sso-email" type="text" autocomplete="off" value="" onFocus={onUserNameToggle} onBlur={onUserNameToggle}/>
                       </span>
                       <label for="sso-email" id="sso-email_label" className="input-field__placeholder">Email or Emirates Skywards number</label>
                     </span>
@@ -24,10 +40,10 @@ function Login() {
                     <a data-id="pagebody_link" data-link="Forgot your email or account number?" title="Forgot your email or account number?" href="/account/vn/vietnamese/login/forgot_membership_number.aspx?section=MYA&amp;th=4209188f5a9c44dc0289b4298720134a7ccdbd09&amp;refurl=%2Fvn%2Fvietnamese" className="link link--with-hover-bg link--underline login-form__link">Forgot your email or account number?</a>
                   </p>
                   <div className="login-form__form-field">
-                    <span className="input-field">
+                    <span className={`input-field ${passwordToggle ? 'input-field--active' : ''}`}>
                       <input name="password" type="hidden" value=""/>
                       <span className="input-field__field">
-                        <input aria-labelledby="sso-password_label" className="input-field__input ellipsis" id="sso-password" type="password" required="" aria-required="true" autocomplete="off" value=""/>
+                        <input aria-labelledby="sso-password_label" className="input-field__input ellipsis" id="sso-password" type="password" required="" aria-required="true" autocomplete="off" value="" onFocus={onPasswordToggle} onBlur={onPasswordToggle}/>
                       </span>
                       <label for="sso-password" id="sso-password_label" className="input-field__placeholder">Password</label>
                     </span>
@@ -37,8 +53,8 @@ function Login() {
                   </p>
                   <div className="login-form__remember">
                     <div className="checkbox-field">
-                      <input className="checkbox-field__input" id="checkbox-field__0" type="checkbox" name="rememberMe"/>
-                      <label className="checkbox-field__label icon icon-check" for="checkbox-field__0">Keep me logged in on this device
+                      <input className="checkbox-field__input" id="checkbox-field__0" type="checkbox" name="rememberMe" onChange={onRememberMeToggle} checked={rememberMeToggle}/>
+                      <label className={`checkbox-field__label icon ${rememberMeToggle ? 'icon-check' : ''}`} for="checkbox-field__0">Keep me logged in on this device
                       </label>
                     </div>
                   </div>
