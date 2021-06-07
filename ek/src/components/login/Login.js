@@ -6,6 +6,7 @@ function Login() {
   const[rememberMeToggle, setRememberMeToggle] = useState(false);
   const[hasError, sethasError] = useState(false);
   const[userName, setUserName] = useState('');
+  const[password, setPassword] = useState('');
   function onUserNameToggle(e)
   {
     setUserNameToggle(!userNameToggle);    
@@ -22,11 +23,7 @@ function Login() {
   }
   function login()
   {
-
-  }
-  function onSetUserName(e)
-  {
-    setUserName(e.target.value);
+    userName = "login";
   }
   return (
     <div aria-live="polite">
@@ -39,10 +36,10 @@ function Login() {
                 <div aria-live="off" className={`login-error login-form__error ${hasError ? '' : 'hidden'}`}><p class="nofocus">Password: This is a mandatory field, please check and try again. </p></div>
                 <form>
                   <div className="login-form__form-field">
-                    <span className={`input-field ${userNameToggle ? 'input-field--active' : ''}`}>
+                    <span className={`input-field ${userNameToggle || userName != '' ? 'input-field--active' : ''}`}>
                       <input name="username" type="hidden" value={userName}/>
                       <span className="input-field__field">
-                        <input aria-labelledby="sso-email_label" className="input-field__input ellipsis" for="email"  id="sso-email" type="text" autocomplete="off" value="" onFocus={onUserNameToggle} onBlur={onUserNameToggle} onChange={(e) => setUserName(e.target.value)}/>
+                        <input aria-labelledby="sso-email_label" className="input-field__input ellipsis" for="email"  id="sso-email" type="text" pattern="^\s*((EK|ek|Ek|eK)\s*(\d\s*){9}|00\s*(\d\s*){9}|(\d\s*){9}|.+@.+\..+)$" autocomplete="off" value={userName} onFocus={onUserNameToggle} onBlur={onUserNameToggle} onChange={(e) => setUserName(e.target.value)}/>
                       </span>
                       <label for="sso-email" id="sso-email_label" className="input-field__placeholder">Email or Emirates Skywards number</label>
                     </span>
@@ -51,10 +48,10 @@ function Login() {
                     <a data-id="pagebody_link" data-link="Forgot your email or account number?" title="Forgot your email or account number?" href="/account/vn/vietnamese/login/forgot_membership_number.aspx?section=MYA&amp;th=4209188f5a9c44dc0289b4298720134a7ccdbd09&amp;refurl=%2Fvn%2Fvietnamese" className="link link--with-hover-bg link--underline login-form__link">Forgot your email or account number?</a>
                   </p>
                   <div className="login-form__form-field">
-                    <span className={`input-field ${passwordToggle ? 'input-field--active' : ''}`}>
-                      <input name="password" type="hidden" value=""/>
+                    <span className={`input-field ${passwordToggle || password != '' ? 'input-field--active' : ''}`}>
+                      <input name="password" type="hidden" value={password}/>
                       <span className="input-field__field">
-                        <input aria-labelledby="sso-password_label" className="input-field__input ellipsis" id="sso-password" type="password" required="" aria-required="true" autocomplete="off" value="" onFocus={onPasswordToggle} onBlur={onPasswordToggle}/>
+                        <input aria-labelledby="sso-password_label" className="input-field__input ellipsis" id="sso-password" type="password" required="" aria-required="true" autocomplete="off" value={password} onFocus={onPasswordToggle} onBlur={onPasswordToggle} onChange={(e) => setPassword(e.target.value)}/>
                       </span>
                       <label for="sso-password" id="sso-password_label" className="input-field__placeholder">Password</label>
                     </span>
