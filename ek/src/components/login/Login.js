@@ -4,12 +4,11 @@ import ErrorMessage from '../commons/ErrorMessage';
 function Login() {
   const[userNameToggle, setUserNameToggle] = useState(false);
   const[passwordToggle, setPasswordToggle] = useState(false);
-  const[rememberMeToggle, setRememberMeToggle] = useState(false);
-  const[hasError, sethasError] = useState(false);
+  const[rememberMeToggle, setRememberMeToggle] = useState(false);  
   const[errorMessages, setErrorMessages] = useState([]);
   const[userName, setUserName] = useState('');
   const[password, setPassword] = useState('');
-  function onUserNameToggle(e)
+  function onUserNameToggle()
   {
     setUserNameToggle(!userNameToggle);    
   }
@@ -26,7 +25,7 @@ function Login() {
   function login()
   {
     setErrorMessages([]);
-    
+
     if(!userName)
     {      
       setErrorMessages(state => [...state, "Email address or Emirates Skywards number: This is a mandatory field, please check and try again. "]);
