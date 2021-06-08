@@ -1,37 +1,23 @@
 import React, { useState } from 'react';
 import ErrorMessage from '../commons/ErrorMessage';
-import $ from 'jquery';
+import EKInput from '../commons/EKInput';
+import EKCheckbox from '../commons/EKCheckbox';
 
 function Login(params) {
-  const[userNameToggle, setUserNameToggle] = useState(false);
-  const[passwordToggle, setPasswordToggle] = useState(false);
-  const[rememberMeToggle, setRememberMeToggle] = useState(false);  
-  const[errorList, setErrorList] = useState([]);
-  const[userName, setUserName] = useState('');
-  const[password, setPassword] = useState('');
-  function onUserNameToggle()
-  {
-    setUserNameToggle(!userNameToggle);    
-  }
   
-  function onPasswordToggle()
-  {
-    setPasswordToggle(!passwordToggle);
-  }
-
-  function onRememberMeToggle()
-  {
-    setRememberMeToggle(!rememberMeToggle);
-  }
+  const[errorList, setErrorList] = useState([]);
+  const[userNameValue, setUserNameValue] = useState('');
+  const[passwordValue, setPasswordValue] = useState('');
+  
   function login()
   {
     setErrorList([]);
 
-    if(userName === '')
+    if(userNameValue === '')
     {      
       setErrorList(errorMessages => [...errorMessages, ["Email address or Emirates Skywards number: This is a mandatory field, please check and try again. "]]);
     }
-    if(password === '')
+    if(passwordValue === '')
     {      
       setErrorList(errorMessages => [...errorMessages, ["Password: This is a mandatory field, please check and try again. "]]);
     }
@@ -67,37 +53,17 @@ function Login(params) {
             <div className="split__left login-central__split-left">
               <section className="login-form__container">
                 <h2 className="login-form__heading">Login</h2>                
-                <ErrorMessage messages={errorList} />                
-                <div className="login-form__form-field">
-                  <span className={`input-field ${userNameToggle || userName !== '' ? 'input-field--active' : ''}`}>
-                    <input name="username" type="hidden" value={userName}/>
-                    <span className="input-field__field">
-                      <input aria-labelledby="sso-email_label" className="input-field__input ellipsis" id="sso-email" type="text" pattern="^\s*((EK|ek|Ek|eK)\s*(\d\s*){9}|00\s*(\d\s*){9}|(\d\s*){9}|.+@.+\..+)$" value={userName} onFocus={onUserNameToggle} onBlur={onUserNameToggle} onChange={(e) => setUserName(e.target.value)}/>
-                    </span>
-                    <label for="sso-email"  id="sso-email_label" className="input-field__placeholder">Email or Emirates Skywards number</label>
-                  </span>
-                </div>
+                <ErrorMessage messages={errorList} />       
+                <EKInput title="Email or Emirates Skywards number" id="sso-email" type="text" inputValue={userNameValue} setInputValue={setUserNameValue} />
                 <p className="login-form__p">
                   <a data-id="pagebody_link" data-link="Forgot your email or account number?" title="Forgot your email or account number?" href="/account/vn/vietnamese/login/forgot_membership_number.aspx?section=MYA&amp;th=4209188f5a9c44dc0289b4298720134a7ccdbd09&amp;refurl=%2Fvn%2Fvietnamese" className="link link--with-hover-bg link--underline login-form__link">Forgot your email or account number?</a>
                 </p>
-                <div className="login-form__form-field">
-                  <span className={`input-field ${passwordToggle || password !== '' ? 'input-field--active' : ''}`}>
-                    <input name="password" type="hidden" value={password}/>
-                    <span className="input-field__field">
-                      <input aria-labelledby="sso-password_label" className="input-field__input ellipsis" id="sso-password" type="password" required="" aria-required="true" value={password} onFocus={onPasswordToggle} onBlur={onPasswordToggle} onChange={(e) => setPassword(e.target.value)}/>
-                    </span>
-                    <label for="sso-password" id="sso-password_label" className="input-field__placeholder">Password</label>
-                  </span>
-                </div>
+                <EKInput title="Password" id="sso-password" type="password" inputValue={passwordValue} setInputValue={setPasswordValue} />                
                 <p className="login-form__p">
                   <a data-id="pagebody_link" data-link="Forgot/Create password" title="Quên/Tạo mật khẩu" href="/account/vn/vietnamese/login/forgot_membership_password.aspx?section=MYA&amp;th=5e2bd2de30719dede1e505285ab12c72c9e11cb2&amp;refurl=%2Fvn%2Fvietnamese" className="link link--with-hover-bg link--underline login-form__link">Forgot/Create password</a>
                 </p>
                 <div className="login-form__remember">
-                  <div className="checkbox-field">
-                    <input className="checkbox-field__input" id="checkbox-field__0" type="checkbox" name="rememberMe" onChange={onRememberMeToggle} checked={rememberMeToggle}/>
-                    <label for="checkbox-field__0" className={`checkbox-field__label icon ${rememberMeToggle ? 'icon-check' : ''}`}>Keep me logged in on this device
-                    </label>
-                  </div>
+                  <EKCheckbox id="chkRememberMe" title="Keep me logged in on this device" />
                 </div>
                 <div className="login-form__action-btn">
                   <button id="login-button" aria-disabled="false" type="submit" className="call-to-action call-to-action__primary call-to-action--middle" onClick={handleSubmit}>Login</button>
