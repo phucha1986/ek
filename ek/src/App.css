@@ -1211,3 +1211,18 @@ hr.abper-112-hr {
   text-decoration: none !important;
   background-color: #f6f6f6;
 }
+
+.background {
+  background-image:  url("https://c.ekstatic.net/ecl/skywards/skywards-tree-blue-w1920x480.jpg?h=2ZrGQTqpgxZNt8LEalaN4w");
+}
+
+.db{
+  display: block;
+}
+
+.myaccount1
+{
+  overflow: hidden; 
+  visibility: visible; 
+  justify-content: space-evenly;
+}
