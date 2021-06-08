@@ -1,18 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/commons/Header';
+import AuthenticatedHeader from './components/commons/AuthenticatedHeader';
 import Footer from './components/commons/Footer';
-import LoginHeader from './components/login/LoginHeader';
+import LoginTitle from './components/login/LoginHeader';
 import Login from './components/login/Login';
+import React, { useState } from 'react';
+
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  let header = isAuthenticated ? <AuthenticatedHeader /> : <Header />;
   return (
-    <div className="ek">
-      <Header />
+    <div className="ek">  
+      {header}      
       <main id="maincontent">
-        <LoginHeader />
-        <Login />        
+        <LoginTitle />
+        <Login setIsAuthenticated={setIsAuthenticated}/>        
       </main>
-      <Footer />
+      <Footer isAuthenticated={isAuthenticated} />
     </div>
   );
 }

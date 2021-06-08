@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
 
 const ErrorMessage = (params) => {
 
   let hasError = params.messages.length > 0;
   let errorMessages = params.messages.map((item, i) => {
     return (
-      <p className="nofocus">
+      <p className="nofocus" key={i}>
         {item}
       </p>
     );
