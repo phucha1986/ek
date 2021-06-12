@@ -4,8 +4,9 @@ import EKInput from '../commons/EKInput';
 import EKCheckbox from '../commons/EKCheckbox';
 import EKButton from '../commons/EKButton';
 import LoginTitle from '../login/LoginHeader';
+import store from './../../store.js';
 
-function Login(params) {
+function Login() {
   
   const[errorList, setErrorList] = useState([]);
   const[userNameValue, setUserNameValue] = useState('');
@@ -24,7 +25,14 @@ function Login(params) {
       setErrorList(errorMessages => [...errorMessages, ["Password: This is a mandatory field, please check and try again. "]]);
     }    
     if(userNameValue === "EK1234") {
-      params.setIsAuthenticated(true);
+      store.dispatch(
+        {
+          type: 'loggedIn',
+          payload: {
+            userName: 'Antonio'
+          }          
+        }
+      );      
     }
   }
   function handleSubmit(e)

@@ -5,11 +5,20 @@ import Footer from './components/commons/Footer';
 import MyStatement from './components/myaccount/MyStatement';
 import Login from './components/login/Login';
 import React, { useState } from 'react';
+import store from './store.js';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  store.dispatch(
+    {
+      type: 'loggedOut'
+    }
+  );
+
+  const isAuthenticated = useState(store.getState().isAuthenticated);  
   let header = isAuthenticated ? <AuthenticatedHeader /> : <Header />;
-  let mainContent = isAuthenticated ? <MyStatement /> : <Login setIsAuthenticated={setIsAuthenticated}/>;
+  let mainContent = isAuthenticated ? <MyStatement /> : <Login />;
+  
   
 
   return (
