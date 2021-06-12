@@ -1,5 +1,11 @@
 import store from './../../store.js';
+import React, { useEffect } from 'react';
 function MyStatement() {
+
+  useEffect(() => {
+    document.title = "My Statement  | Account | Emirates Skywards | Emirates Vietnam";
+ }, []);
+
   return (
    <> 
     <div className="e-container--separator"><div data-auto="page-header" className="page-header-skywards page-header page-header__shadow-unit"><div className="image-container page-header__image-wrapper"><div role="img" aria-label="Skywards Tree Blue" title="Skywards Tree Blue" className="image-resizable background"></div></div><div className="e-container--separator page-header__content-header"></div></div></div>

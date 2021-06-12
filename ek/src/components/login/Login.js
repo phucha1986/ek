@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ErrorMessage from '../commons/ErrorMessage';
 import EKInput from '../commons/EKInput';
 import EKCheckbox from '../commons/EKCheckbox';
@@ -11,6 +11,10 @@ function Login() {
   const[userNameValue, setUserNameValue] = useState('EK1234');
   const[passwordValue, setPasswordValue] = useState('test');
   
+  useEffect(() => {
+    document.title = "Login to Emirates";
+ }, []);
+
   function login()
   {
     setErrorList([]);
