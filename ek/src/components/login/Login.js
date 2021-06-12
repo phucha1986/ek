@@ -8,7 +8,7 @@ import store from './../../store.js';
 function Login() {
   
   const[errorList, setErrorList] = useState([]);
-  const[userNameValue, setUserNameValue] = useState('EK1234');
+  const[userNameValue, setUserNameValue] = useState('EK619931045');
   const[passwordValue, setPasswordValue] = useState('test');
   
   useEffect(() => {
@@ -27,12 +27,13 @@ function Login() {
     {      
       setErrorList(errorMessages => [...errorMessages, ["Password: This is a mandatory field, please check and try again. "]]);
     }    
-    if(userNameValue === "EK1234") {
+    if(userNameValue === "EK619931045") {
       store.dispatch(
         {
           type: 'loggedIn',
           payload: {
-            userName: 'Antonio'
+            userName: 'Antonio',
+            id: 'EK 619 931 045'
           }          
         }
       );      
