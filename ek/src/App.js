@@ -8,24 +8,19 @@ import React, { useState } from 'react';
 import store from './store.js';
 
 function App() {
-
-  store.dispatch(
-    {
-      type: 'loggedOut'
-    }
-  );
-
-  const isAuthenticated = useState(store.getState().isAuthenticated);  
+  
+  const [storeState, setStoreState] = useState(store.getState()); 
+  store.subscribe(() => setStoreState(store.getState()));
+  const isAuthenticated = storeState.isAuthenticated;
   let header = isAuthenticated ? <AuthenticatedHeader /> : <Header />;
   let mainContent = isAuthenticated ? <MyStatement /> : <Login />;
-  
-  
 
   return (
     <>
+      
       {header}      
       <main id="maincontent">        
-        {mainContent}    
+        {mainContent}
       </main>
       <Footer isAuthenticated={isAuthenticated} />
     </>

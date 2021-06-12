@@ -1,24 +1,20 @@
-
-export default function reducer(store = [], action)
-{
-    switch(action.type)
+import produce from "immer"
+//store = {user: {userName: '', isAuthenticated: false}}
+const reducer = produce((draft = {user: {userName: ''}, isAuthenticated: false}, action) =>
     {
-        case 'loggedIn':
-            return [            
-                ...store,
-                {
-                    userName: action.payload.userName,
-                    isAuthenticated: true
-                }            
-            ];
-        case 'loggedOut':
-            return [            
-                ...store,
-                {                
-                    isAuthenticated: false
-                }            
-            ];
-        default:
-            return store;
-    }    
-}
+        switch(action.type)
+        {
+            case 'loggedIn':
+                draft.user.userName = action.payload.userName;
+                draft.isAuthenticated = true;
+                return draft;
+            case 'loggedOut':
+                draft.isAuthenticated = false;
+                return draft;
+            default:
+                return draft;
+        }    
+    }
+);
+
+export default reducer;

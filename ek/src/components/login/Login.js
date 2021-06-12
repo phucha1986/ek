@@ -5,12 +5,11 @@ import EKCheckbox from '../commons/EKCheckbox';
 import EKButton from '../commons/EKButton';
 import LoginTitle from '../login/LoginHeader';
 import store from './../../store.js';
-
 function Login() {
   
   const[errorList, setErrorList] = useState([]);
-  const[userNameValue, setUserNameValue] = useState('');
-  const[passwordValue, setPasswordValue] = useState('');
+  const[userNameValue, setUserNameValue] = useState('EK1234');
+  const[passwordValue, setPasswordValue] = useState('test');
   
   function login()
   {
