@@ -7,6 +7,7 @@ import Login from './components/login/Login';
 import React, { useState } from 'react';
 import store from './store.js';
 
+
 function App() {
   
   const [storeState, setStoreState] = useState(store.getState()); 
@@ -16,8 +17,7 @@ function App() {
   let mainContent = isAuthenticated ? <MyStatement /> : <Login />;
 
   return (
-    <>
-      
+    <>      
       {header}      
       <main id="maincontent">        
         {mainContent}

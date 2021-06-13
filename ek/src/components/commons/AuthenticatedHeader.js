@@ -1,7 +1,6 @@
 import store from './../../store.js';
 import React, { useState } from 'react';
 import HeaderNavigation from './HeaderNavigation.js';
-
 function AuthenticatedHeader() {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const headerNavigationList = ['BOOK', 'MANAGE', 'EXPIRIENCE', 'WHERE TO FLY', 'LOYALITY', 'HELP'];
@@ -35,7 +34,7 @@ function AuthenticatedHeader() {
               <div className="abper-112-toggle-container bx-mobile_web_feedback_button"><div className="icon icon-feedback"></div><span className="abper-112-text abper-112-hidden-desktop">Leave website feedback</span><span className="abper-112-text abper-112-hidden-mobile">Feedback</span></div>
             </div>
             <nav className="main-navigation__nav">
-              <div>                
+              <div>                              
                 <HeaderNavigation headerNavigationList={headerNavigationList}/>                                  
               </div>
             </nav>
@@ -50,7 +49,7 @@ function AuthenticatedHeader() {
             <li className="header-buttons__item"><button type="button" className="main-navigation__burger">MENU</button></li></ul>
           </div>
         </div>
-      </div>
+      </div>      
     </header>
   );
 }
