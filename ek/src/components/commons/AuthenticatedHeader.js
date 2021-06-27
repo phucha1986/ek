@@ -1,6 +1,7 @@
 import store from './../../store.js';
 import React, { useState } from 'react';
 import HeaderNavigation from './HeaderNavigation.js';
+
 function AuthenticatedHeader() {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const headerNavigationList = ['BOOK', 'MANAGE', 'EXPIRIENCE', 'WHERE TO FLY', 'LOYALITY', 'HELP'];

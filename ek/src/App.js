@@ -6,6 +6,8 @@ import MyStatement from './components/myaccount/MyStatement';
 import Login from './components/login/Login';
 import React, { useState } from 'react';
 import store from './store.js';
+import BookAFlight from './components/book/BookAFlight';
+import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 
 function App() {
@@ -14,16 +16,24 @@ function App() {
   store.subscribe(() => setStoreState(store.getState()));
   const isAuthenticated = storeState.isAuthenticated;
   let header = isAuthenticated ? <AuthenticatedHeader /> : <Header />;
-  let mainContent = isAuthenticated ? <MyStatement /> : <Login />;
+  //let mainContent = isAuthenticated ? <MyStatement /> : ;
 
   return (
-    <>      
+    <Router>          
       {header}      
-      <main id="maincontent">        
-        {mainContent}
+      <main id="maincontent">
+        <Route>
+          {!isAuthenticated ? <Login /> : ''}
+        </Route>
+        <Route path="/MyStatement">
+          <MyStatement />
+        </Route>
+        <Route path="/BookAFlight">
+          <BookAFlight/>
+        </Route>
       </main>
       <Footer isAuthenticated={isAuthenticated} />
-    </>
+    </Router>
   );
 }
 

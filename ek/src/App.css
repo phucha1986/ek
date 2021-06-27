@@ -1226,3 +1226,173 @@ hr.abper-112-hr {
   visibility: visible; 
   justify-content: space-evenly;
 }
+.widget-container__widget-wrapper {
+  display:flex;
+  flex-direction:column;
+  justify-content:stretch;
+  width:100%;
+  padding:10px;
+  background-color:#fff;
+  border-radius:3px;
+  box-shadow:0 2px 4px 2px rgba(0,0,0,.1)
+ }
+ @media only screen and (min-width:992px) {
+  .widget-container__widget-wrapper {
+   max-width:1100px;
+   padding:20px
+  }
+ }
+.date-input-range-picker,
+.date-input-range-picker {
+ box-shadow:inset 4px 4px 0 0 #f2f2f2
+}
+.date-input-range-picker {
+  position:relative;
+  display:inline-block;
+  box-sizing:border-box;
+  width:100%;
+  min-height:60px;
+  overflow:hidden;
+  color:#333;
+  line-height:60px;
+  background:#fff;
+  border-radius:3px;
+  position:static;
+  padding:0;
+  overflow:visible;
+  line-height:normal;
+  background-color:#fff;
+  border:1px solid #666
+ }
+.DateInput,
+.DateInput_inner-wrapper {
+ position:relative
+}
+.booking-widget__second-row__column {
+  flex: 1;
+  margin-bottom: 0;
+}
+.date-input-range-picker, [dir] .date-input-range-picker {
+  box-shadow: inset 4px 4px 0 0 #f2f2f2;
+}
+.date-input-range-picker {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 60px;
+  overflow: hidden;
+  color: #333;
+  line-height: 60px;
+  background: #fff;
+      background-color: rgb(255, 255, 255);
+  border-radius: 3px;
+  position: static;
+  padding: 0;
+  overflow: visible;
+  line-height: normal;
+  background-color: #fff;
+  border: 1px solid #666;
+}
+.date-input-range-picker .DateInput_label__focused {
+  top: 0;
+  bottom: inherit;
+  padding-top: 6px;
+  font-size: 1.2rem;
+  line-height: 20px;
+}
+.DateInput_label {
+  height:60px;
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  z-index:2;
+  display:block;
+  padding:0 20px;
+  overflow:hidden;
+  font-weight:400;
+  font-size:1.6rem;
+  line-height:60px;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  transition:all .2s ease;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  font-family:HelveticaNeue-Light,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif
+ }
+ .DateRangePicker .DateRangePickerInput {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.DateRangePicker .DateInput {
+  width: 50%;
+  height: 58px;
+  background: transparent;
+  border: none;
+  box-shadow: none !important;
+}
+.DateInput {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 60px;
+  padding: 0 20px;
+  color: #333;
+  line-height: 60px;
+  background: #fff;
+  border: 1px solid #666;
+  border-radius: 3px;
+  box-shadow: inset 3px 3px 4px #f2f2f2;
+}
+.DateInput_screenReaderMessage {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0,0,0,0);
+}
+.DateRangePicker .DateInput_input {
+  z-index: 2;
+}
+.booking-widget .DateInput_input, .booking-widget .DateInput_label {
+  cursor: pointer;
+}
+.DateInput_input__readOnly {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.DateInput_input {
+  font-family: HelveticaNeue-Medium,Helvetica,Arial,Lucida Grande,sans-serif;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  font-size: 2rem;
+  line-height: 40px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  position: relative;
+  top: 10px;
+  padding: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.DateInput_label__multi:last-of-type {
+  left: 50%;
+}
+.DateInput_label__multi {
+  width: 50%;
+}
