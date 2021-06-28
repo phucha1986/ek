@@ -2,6 +2,9 @@ import EKDropdown from "../commons/EKDropdown";
 import EKDatePicker from "../commons/EKDatePicker";
 
 function SearchBox() {
+    var departureAirports = [{City: 'Saigon', Country: 'Vietnam', Airport: 'Tan San Nhat Airport', AirportCode: 'SGN', Selected: true}, {City: 'Dubai', Country: 'UAE', Airport: 'Dubai Airport', AirportCode: 'DXB'}]
+    var arrivalAirports = [{City: 'Saigon', Country: 'Vietnam', Airport: 'Tan San Nhat Airport', AirportCode: 'SGN'}, {City: 'Dubai', Country: 'UAE', Airport: 'Dubai Airport', AirportCode: 'DXB', Selected: true}]
+    
     return (
         <div id="82871" data-organism="g-c-0013-advance-booking-widget">            
             <div className="e-container e-container--separator">
@@ -21,13 +24,12 @@ function SearchBox() {
                                     <div className="booking-widget__first-row">
                                         <div className="booking-widget__second-row__column">
                                             <div>
-                                                <EKDropdown Title="Departure Airport" DefaultItem="Saigon (SGN)"/>
-                                               
+                                                <EKDropdown Title="Departure Airport" Items={departureAirports} ID="cboDeparture"/>                                               
                                             </div>
                                         </div>
                                         <div className="booking-widget__second-row__column">
                                             <div>                                                
-                                                <EKDropdown Title="Arrival Airport" DefaultItem="Dubai (DXB)"/>
+                                                <EKDropdown Title="Arrival Airport" DefaultItem="Dubai (DXB)" Items={arrivalAirports} ID="cboArrival"/>
                                             </div>
                                         </div>
                                         <div className="booking-widget__second-row__column">
@@ -40,12 +42,12 @@ function SearchBox() {
                                 <div className="booking-widget__second-row">
                                     <div className="booking-widget__second-row__column">
                                         <div>                                                
-                                            <EKDropdown Title="Passengers" DefaultItem="1 Aldult"/>
+                                            <EKDropdown Title="Passengers" DefaultItem="1 Aldult" Items={departureAirports} ID="cboPassengers"/>
                                         </div>
                                     </div>
                                     <div className="booking-widget__second-row__column booking-widget__cabin-class-wrapper">
                                         <div>                                                
-                                            <EKDropdown Title="Class" DefaultItem="Economy"/>
+                                            <EKDropdown Title="Class" DefaultItem="Economy" Items={departureAirports} ID="cboClass"/>
                                         </div>
                                     </div>
                                     <div className="booking-widget__second-row__column">
