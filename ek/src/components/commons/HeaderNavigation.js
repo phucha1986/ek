@@ -34,7 +34,7 @@ function HeaderNavigation(params) {
                 </ul>
               </div>
             </div>
-            <a data-id="header_nav_cta" data-link="BOOK:Search Flights" href="/sessionhandler.aspx?pageurl=/IBE.aspx&amp;pub=/vn/english&amp;j=f&amp;section=IBE" className="link header-popup__search call-to-action call-to-action__primary call-to-action--small">Search flights</a>
+            <Link data-id="header_nav_cta" data-link="BOOK:Search Flights" to="/BookAFlight" className="link header-popup__search call-to-action call-to-action__primary call-to-action--small">Search flights</Link>
           </div>
         </div>
       </div>

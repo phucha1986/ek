@@ -4,7 +4,7 @@ import EKDatePicker from "../commons/EKDatePicker";
 function SearchBox() {
     var departureAirports = [{City: 'Saigon', Country: 'Vietnam', Airport: 'Tan San Nhat Airport', AirportCode: 'SGN', Selected: true}, {City: 'Dubai', Country: 'UAE', Airport: 'Dubai Airport', AirportCode: 'DXB'}]
     var arrivalAirports = [{City: 'Saigon', Country: 'Vietnam', Airport: 'Tan San Nhat Airport', AirportCode: 'SGN'}, {City: 'Dubai', Country: 'UAE', Airport: 'Dubai Airport', AirportCode: 'DXB', Selected: true}]
-    
+
     return (
         <div id="82871" data-organism="g-c-0013-advance-booking-widget">            
             <div className="e-container e-container--separator">
