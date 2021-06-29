@@ -20,8 +20,8 @@ function SearchBox() {
                                     <a className="link link--with-hover-bg booking-widget__login-link" href="#"><span className="booking-widget__login-link__regular-text">Advanced search: multi-city, promo codes, partner airlines</span><span className="booking-widget__login-link__small-text">Advanced search and Classic Rewards</span>&nbsp;<span dir="auto" className="link__chevron pictogram-wrapper pictogram-wrapper__chevron" aria-hidden="true"><i className="icon icon-chevron-right link__chevron-icon"></i></span></a>
                                 </div>
 
-                                <div className="booking-widget__list-field">
-                                    <div className="booking-widget__first-row">
+                                <div className="booking-widget__second-row">
+                                    {/* <div className="booking-widget__first-row"> */}
                                         <div className="booking-widget__second-row__column">
                                             <div>
                                                 <EKDropdown Title="Departure Airport" Items={departureAirports} ID="cboDeparture"/>                                               
@@ -36,7 +36,7 @@ function SearchBox() {
                                             <EKDatePicker FirstText="Departing" SecondText="Returning"/>                                            
                                         </div>
                                         
-                                    </div>
+                                    {/* </div> */}
                                     
                                 </div>
                                 <div className="booking-widget__second-row">
