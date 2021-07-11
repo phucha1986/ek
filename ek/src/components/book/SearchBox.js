@@ -2,9 +2,20 @@ import EKDropdown from "../commons/EKDropdown";
 import EKDatePicker from "../commons/EKDatePicker";
 
 function SearchBox() {
-    var departureAirports = [{City: 'Saigon', Country: 'Vietnam', Airport: 'Tan San Nhat Airport', AirportCode: 'SGN', Selected: true}, {City: 'Dubai', Country: 'UAE', Airport: 'Dubai Airport', AirportCode: 'DXB'}]
-    var arrivalAirports = [{City: 'Saigon', Country: 'Vietnam', Airport: 'Tan San Nhat Airport', AirportCode: 'SGN'}, {City: 'Dubai', Country: 'UAE', Airport: 'Dubai Airport', AirportCode: 'DXB', Selected: true}]
+    var departureAirports = [{City: 'Saigon', Country: 'Vietnam', Airport: 'Tan San Nhat Airport', AirportCode: 'SGN', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png', Selected: true}, {City: 'Dubai', Country: 'UAE', Airport: 'Dubai Airport', AirportCode: 'DXB'}];
+    var selectedDepartureAirports = departureAirports.find(item => item.Selected);
+    var departureAirportDescription = `${selectedDepartureAirports.City} (${selectedDepartureAirports.AirportCode})`;
 
+    var arrivalAirports = [{City: 'Saigon', Country: 'Vietnam', Airport: 'Tan San Nhat Airport', AirportCode: 'SGN'}, {City: 'Dubai', Country: 'UAE', Airport: 'Dubai Airport', AirportCode: 'DXB',  AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png', Selected: true}];
+    var selectedArrivalAirports = arrivalAirports.find(item => item.Selected);
+    var arrivalAirportDescription = `${selectedArrivalAirports.City} (${selectedArrivalAirports.AirportCode})`;
+
+    var passengers = [{Type: "Adult", Selected: true}, {Type: "Children"}, {Type: "Infant"}];
+    var selectedPassengerDescription = `1 ${passengers.find(item => item.Selected).Type}`;
+
+    var classes = [{Type: "Economy", Selected: true}, {Type: "Business"}, {Type: "First"}];
+    var selectedClassDescription = `${classes.find(item => item.Selected).Type} Class`;
+    
     return (
         <div id="82871" data-organism="g-c-0013-advance-booking-widget">            
             <div className="e-container e-container--separator">
@@ -24,12 +35,12 @@ function SearchBox() {
                                     {/* <div className="booking-widget__first-row"> */}
                                         <div className="booking-widget__second-row__column">
                                             <div>
-                                                <EKDropdown Title="Departure Airport" Items={departureAirports} ID="cboDeparture"/>                                               
+                                                <EKDropdown Title="Departure Airport" DropdownType="Airport" Descriptions={departureAirportDescription} Items={departureAirports} ID="cboDeparture"/>                                               
                                             </div>
                                         </div>
                                         <div className="booking-widget__second-row__column">
                                             <div>                                                
-                                                <EKDropdown Title="Arrival Airport" DefaultItem="Dubai (DXB)" Items={arrivalAirports} ID="cboArrival"/>
+                                                <EKDropdown Title="Arrival Airport" DropdownType="Airport" Descriptions={arrivalAirportDescription} Items={arrivalAirports} ID="cboArrival"/>
                                             </div>
                                         </div>
                                         <div className="booking-widget__second-row__column">
@@ -42,12 +53,12 @@ function SearchBox() {
                                 <div className="booking-widget__second-row">
                                     <div className="booking-widget__second-row__column">
                                         <div>                                                
-                                            <EKDropdown Title="Passengers" DefaultItem="1 Aldult" Items={departureAirports} ID="cboPassengers"/>
+                                            <EKDropdown Title="Passengers" Descriptions={selectedPassengerDescription} Items={passengers} ID="cboPassengers"/>
                                         </div>
                                     </div>
                                     <div className="booking-widget__second-row__column booking-widget__cabin-class-wrapper">
                                         <div>                                                
-                                            <EKDropdown Title="Class" DefaultItem="Economy" Items={departureAirports} ID="cboClass"/>
+                                            <EKDropdown Title="Class" Descriptions={selectedClassDescription} Items={classes} ID="cboClass"/>
                                         </div>
                                     </div>
                                     <div className="booking-widget__second-row__column">

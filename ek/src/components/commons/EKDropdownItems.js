@@ -31,13 +31,13 @@ const EKDropdownItems = (params) => {
                 </span>
                 <button type="button" role="option" aria-selected="false" data-prevent-esc="true" className="auto-suggest__item">
                   <div className="station-suggest-item__info">
-                    <strong className="station-suggest-item__short-name">{selectedItem.City},</strong>
+                    <strong className="station-suggest-item__short-name">{selectedItem.City}, </strong>
                     <span className="station-suggest-item__country">{selectedItem.Country}</span>
                     <span className="station-suggest-item__long-name">{selectedItem.Airport}</span>
                   </div>
                   <div className="station-suggest-item__icons">
                     <span className="station-suggest-item__station">
-                      <img alt="Operated by Emirates" className="station-suggest-item__emirates" title="Operated by Emirates" src={selectedItem.OperatedBy} />
+                      <img alt="Operated by Emirates" className="station-suggest-item__emirates" title="Operated by Emirates" src={selectedItem.AirlineLogo} />
                     </span>
                     <span className="auto-suggest__code">{selectedItem.AirportCode}</span>
                   </div>

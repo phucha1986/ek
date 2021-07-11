@@ -1396,3 +1396,38 @@ hr.abper-112-hr {
 .DateInput_label__multi {
   width: 50%;
 }
+.icon {
+  display:inline-flex;
+  direction: ltr;
+ }
+ .icon-chevron-down::before {
+  content: "\f148";
+
+}
+.station-suggest-item__emirates {
+  max-width: 58px;
+  height: 20px;
+  font-size: 1rem;
+  font-style: normal;
+  white-space: normal;
+  vertical-align: top;
+  word-wrap: break-word;
+}
+.station-suggest-item__icons {
+  display: flex;
+  height: 100%;
+  line-height: 20px;
+  white-space: nowrap;
+}
+.station-suggest-item__long-name {
+  display: flex;
+  padding: 3px 0 0;
+  font-size: 1.2rem;
+  font-style: normal;
+}
+.station-suggest-item__info {
+  flex-grow: 1;
+  flex-basis: 0;
+  width: 100%;
+  text-align: left;
+}
