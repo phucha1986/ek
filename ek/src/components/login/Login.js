@@ -43,7 +43,7 @@ function Login() {
       setErrorList(errorMessages => [...errorMessages, ["Password: This is a mandatory field, please check and try again. "]]);
     }            
 
-    if(!errorMessages.length)
+    if(errorMessages.length == 0)
     {
       setIsLogging(true);
       store.dispatch(
