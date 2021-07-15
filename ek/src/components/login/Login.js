@@ -41,11 +41,15 @@ function Login() {
     if(passwordValue === '')
     {      
       setErrorList(errorMessages => [...errorMessages, ["Password: This is a mandatory field, please check and try again. "]]);
+    }            
+
+    if(!errorMessages.length)
+    {
+      setIsLogging(true);
+      store.dispatch(
+        loggedInThunk(userNameValue)
+      );
     }        
-    setIsLogging(true);
-    store.dispatch(
-      loggedInThunk(userNameValue)
-    );    
   }
   function handleSubmit(e)
   {    
