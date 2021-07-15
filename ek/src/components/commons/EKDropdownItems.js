@@ -1,32 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import $, { param } from 'jquery';
+import $ from 'jquery';
+
+
 
 const EKDropdownItems = (params) => {
-  const [selectedItem, setSelectedItem] = useState(params.Items.find(item => item.Selected));
-  const remainingItems = params.Items.filter(item => !item.Selected).map((item, i) => {
-    return (
-      <button type="button" role="option" aria-selected="false" value={item.AirportCode} data-prevent-esc="true" className="auto-suggest__item" onClick={e => onItemSelected(e, "value")}>
-        <div className="station-suggest-item__info">
-          <strong className="station-suggest-item__short-name">{item.City}, </strong>
-          <span className="station-suggest-item__country">{item.Country}</span>
-          <span className="station-suggest-item__long-name">{item.Airport}</span>
-        </div>
-        <div className="station-suggest-item__icons">
-          <span className="station-suggest-item__station">
-            <img alt="Operated by Emirates" className="station-suggest-item__emirates" title="Operated by Emirates" src={item.AirlineLogo} />
-          </span>
-          <span className="auto-suggest__code">{item.AirportCode}</span>
-        </div>
-      </button>
-    );
-  });
-
+  const [selectedItem, setSelectedItem] = useState(params.Items.find(item => item.Selected));  
   const onItemSelected = event =>
   {
-    var selectedItem = params.Items.find(item => item.AirportCode == event.currentTarget.value);
+    // if(event.target.tagName != "BUTTON")
+    // {
+    //   console.log(event.target.tagName);
+    //   event.stopPropagation();
+      
+    //   return;
+    // }
+    
+    params.setIsDropDownItemFocus(true);
+    var selectedItem = params.Items.find(item => item.AirportCode == event.target.value);
     setSelectedItem(selectedItem);
-    params.SetTitle(selectedItem.Title);
     params.SetDescriptions(`${selectedItem.City} (${selectedItem.AirportCode})`);
+    params.setIsDropDownItemFocus(false);
   };
 
   const [popUpStyle, setPopupStyle] = useState();
@@ -39,6 +32,30 @@ const EKDropdownItems = (params) => {
         position: 'absolute'
       });
   }, []);
+
+  const preventCapturing = event =>
+  {
+    event.stopPropagation();
+    event.nativeEvent.stopImmediatePropagation();
+  };
+
+  const remainingItems = params.Items.filter(item => (!item.Selected || item != selectedItem) && item != selectedItem).map((item, i) => {
+    return (
+      <button key={i} type="button" value={item.AirportCode} className="auto-suggest__item" onClick={onItemSelected}>
+        <div className="station-suggest-item__info" onClickCapture={preventCapturing}>
+          <strong className="station-suggest-item__short-name">{item.City}, </strong>
+          <span className="station-suggest-item__country">{item.Country}</span>
+          <span className="station-suggest-item__long-name">{item.Airport}</span>
+        </div>
+        <div className="station-suggest-item__icons" onClickCapture={preventCapturing}>
+          <span className="station-suggest-item__station">
+            <img alt="Operated by Emirates" className="station-suggest-item__emirates" title="Operated by Emirates" src={item.AirlineLogo} />
+          </span>
+          <span className="auto-suggest__code">{item.AirportCode}</span>
+        </div>
+      </button>
+    );
+  });
 
   return (    
     <div className={params.Visible ? '' : 'hidden'}>

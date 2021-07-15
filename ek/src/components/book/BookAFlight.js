@@ -1,6 +1,7 @@
 import Title from "./Title";
 import SearchBox from "./SearchBox";
 import React, { useEffect } from 'react';
+import CovidInformation from "../commons/CovidInformation";
 
 function BookAFlight() {
 
@@ -12,6 +13,7 @@ function BookAFlight() {
         <>
             <Title />            
             <SearchBox />
+            <CovidInformation />
         </>
     );
   }

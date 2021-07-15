@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 const EKDropdown = (params) => {  
   const [isShow, setIsShow] = useState(false);
+  const [isDropDownItemFocus, setIsDropDownItemFocus] = useState(false);
   const [title, setTitle] = useState(params.Title);
   const [descriptions, setDescriptions] = useState(params.Descriptions);
   //const dropdownPopup = <EKDropdownItems Items={params.Items} ParentID={params.ID} Visible={isShow} />;
@@ -14,7 +15,13 @@ const EKDropdown = (params) => {
 
   function onDropdownBlur()
   {
-    setIsShow(false);    
+    setTimeout(function(){
+      if(isShow && !isDropDownItemFocus)
+      {
+        setIsShow(false);
+      }
+    }, 500);
+    
   }
 
   return (
@@ -42,7 +49,7 @@ const EKDropdown = (params) => {
       </span>
       <span className="hidden-control" id="auto-suggest_1_aria-described-by">{params.Title}</span>
       <p role="region" aria-live="polite" className="auto-suggest__error-msg"></p>
-      <EKDropdownItems Items={params.Items} ParentID={params.ID} Visible={isShow} SetTitle={setTitle} SetDescriptions={setDescriptions} />
+      <EKDropdownItems Items={params.Items} isDropDownItemFocus={isDropDownItemFocus} setIsDropDownItemFocus={setIsDropDownItemFocus} ParentID={params.ID} Visible={isShow} SetTitle={setTitle} SetDescriptions={setDescriptions} />
     </div>
   );
 }

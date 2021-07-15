@@ -8,7 +8,14 @@ function SearchBox() {
     var selectedDepartureAirports = departureAirports.find(item => item.Selected);
     var departureAirportDescription = `${selectedDepartureAirports.City} (${selectedDepartureAirports.AirportCode})`;
 
-    var arrivalAirports = [{City: 'Saigon', Country: 'Vietnam', Airport: 'Tan San Nhat Airport', AirportCode: 'SGN'}, {City: 'Dubai', Country: 'UAE', Airport: 'Dubai Airport', AirportCode: 'DXB',  AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png', Selected: true}];
+    var arrivalAirports = [{City: 'Saigon', Country: 'Vietnam', Airport: 'Tan San Nhat Airport', AirportCode: 'SGN', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png'}, 
+        {City: 'Dubai', Country: 'UAE', Airport: 'Dubai Airport', AirportCode: 'DXB',  AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png', Selected: true},
+        {City: 'Amman', Country: 'Jordan', Airport: 'Queen Ali International Airport', AirportCode: 'AMM', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png'},
+        {City: 'Accra', Country: 'Ghana', Airport: 'Kotoka International Airport', AirportCode: 'ACC', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png'},
+        {City: 'Bahrain', Country: 'Bahrain', Airport: 'Bahrain International Airport', AirportCode: 'BAH', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png'},
+        {City: 'Baghda', Country: 'Irag', Airport: 'Baghda International Airport', AirportCode: 'BGW', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png'},
+        {City: 'Brisbane', Country: 'Austraulia', Airport: 'Brisbane Airport', AirportCode: 'BNE', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png'},
+    ];
     var selectedArrivalAirports = arrivalAirports.find(item => item.Selected);
     var arrivalAirportDescription = `${selectedArrivalAirports.City} (${selectedArrivalAirports.AirportCode})`;
 
