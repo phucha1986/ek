@@ -15,7 +15,19 @@ function Login() {
   
   useEffect(() => {
     document.title = "Login to Emirates";
- }, []);
+  }, []);
+
+
+  const loggedInAction = () => ({ type: 'loggedIn', payload: { userName: 'Antonio', id: 'EK 619 931 045'}});
+
+  const loggedInThunk = (userNameValue) => dispatch => setTimeout(function(){
+    if(userNameValue === "EK619931045")
+    {
+      dispatch(loggedInAction());
+      localStorage.setItem ('loggedIn', true);
+      history.push('/MyStatement');
+    }
+  }, 1500);
 
   function login()
   {
@@ -29,18 +41,12 @@ function Login() {
     {      
       setErrorList(errorMessages => [...errorMessages, ["Password: This is a mandatory field, please check and try again. "]]);
     }    
-    if(userNameValue === "EK619931045") {
+    //if(userNameValue === "EK619931045") {
+
       store.dispatch(
-        {
-          type: 'loggedIn',
-          payload: {
-            userName: 'Antonio',
-            id: 'EK 619 931 045'
-          }          
-        }
-      );
-      history.push('/MyStatement');
-    }
+        loggedInThunk(userNameValue)
+      );          
+    //}
   }
   function handleSubmit(e)
   {    

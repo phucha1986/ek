@@ -14,8 +14,9 @@ function App() {
   
   const [storeState, setStoreState] = useState(store.getState()); 
   store.subscribe(() => setStoreState(store.getState()));
-  const isAuthenticated = storeState.isAuthenticated;
-  let header = isAuthenticated ? <AuthenticatedHeader /> : <Header />;
+  const isAuthenticated = storeState.isAuthenticated || localStorage.getItem ('loggedIn') == "true";
+  console.log(isAuthenticated);
+  const header = isAuthenticated ? <AuthenticatedHeader /> : <Header />;
   //let mainContent = isAuthenticated ? <MyStatement /> : ;
 
   return (

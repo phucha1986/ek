@@ -11,7 +11,7 @@ function HeaderNavigation(params) {
 
   let navigationMenu = params.headerNavigationList.map((item, i) => {
     return (
-      <button aria-expanded="true" role="link" type="button" className={`nav__list-item-text nav__list-item-text--desktop  header-popup__btn--uppercase call-to-action call-to-action--multiline header-popup__btn ${i == 0 ? 'header-popup__btn--active' : ''}`}><div className="call-to-action__multiline-wrapper header-popup__btn-content"><span className="header-popup__btn-content-wrapper">{item}</span><span aria-hidden="true" className="header-popup__arrow"></span></div></button>
+      <button key={i} aria-expanded="true" role="link" type="button" className={`nav__list-item-text nav__list-item-text--desktop  header-popup__btn--uppercase call-to-action call-to-action--multiline header-popup__btn ${i == 0 ? 'header-popup__btn--active' : ''}`}><div className="call-to-action__multiline-wrapper header-popup__btn-content"><span className="header-popup__btn-content-wrapper">{item}</span><span aria-hidden="true" className="header-popup__arrow"></span></div></button>
     );
   });
 

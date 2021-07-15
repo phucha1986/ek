@@ -1,8 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import $ from 'jquery';
+import $, { param } from 'jquery';
 
 const EKDropdownItems = (params) => {
-  var selectedItem = params.Items.find(item => item.Selected);
+  const [selectedItem, setSelectedItem] = useState(params.Items.find(item => item.Selected));
+  const remainingItems = params.Items.filter(item => !item.Selected).map((item, i) => {
+    return (
+      <button type="button" role="option" aria-selected="false" value={item.AirportCode} data-prevent-esc="true" className="auto-suggest__item" onClick={e => onItemSelected(e, "value")}>
+        <div className="station-suggest-item__info">
+          <strong className="station-suggest-item__short-name">{item.City}, </strong>
+          <span className="station-suggest-item__country">{item.Country}</span>
+          <span className="station-suggest-item__long-name">{item.Airport}</span>
+        </div>
+        <div className="station-suggest-item__icons">
+          <span className="station-suggest-item__station">
+            <img alt="Operated by Emirates" className="station-suggest-item__emirates" title="Operated by Emirates" src={item.AirlineLogo} />
+          </span>
+          <span className="auto-suggest__code">{item.AirportCode}</span>
+        </div>
+      </button>
+    );
+  });
+
+  const onItemSelected = event =>
+  {
+    var selectedItem = params.Items.find(item => item.AirportCode == event.currentTarget.value);
+    setSelectedItem(selectedItem);
+    params.SetTitle(selectedItem.Title);
+    params.SetDescriptions(`${selectedItem.City} (${selectedItem.AirportCode})`);
+  };
+
   const [popUpStyle, setPopupStyle] = useState();
   useEffect(() => {
       let element = $("#" + params.ParentID);      
@@ -60,6 +86,7 @@ const EKDropdownItems = (params) => {
                     </span>
                     All locations
                   </strong>
+                  {remainingItems}
                 </span>
               </div>
             </div>

@@ -1,8 +1,10 @@
 import store from './../../store.js';
 import React, { useState } from 'react';
 import HeaderNavigation from './HeaderNavigation.js';
+import { useHistory } from 'react-router-dom';
 
 function AuthenticatedHeader() {
+  const history = useHistory();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const headerNavigationList = ['BOOK', 'MANAGE', 'EXPIRIENCE', 'WHERE TO FLY', 'LOYALITY', 'HELP'];
 
@@ -18,6 +20,9 @@ function AuthenticatedHeader() {
         type: 'loggedOut'        
       }
     ); 
+    localStorage.setItem ('loggedIn', false);
+    showProfile();
+    history.push('/');
   }
 
   return (

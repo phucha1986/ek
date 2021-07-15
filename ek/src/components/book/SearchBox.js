@@ -2,7 +2,9 @@ import EKDropdown from "../commons/EKDropdown";
 import EKDatePicker from "../commons/EKDatePicker";
 
 function SearchBox() {
-    var departureAirports = [{City: 'Saigon', Country: 'Vietnam', Airport: 'Tan San Nhat Airport', AirportCode: 'SGN', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png', Selected: true}, {City: 'Dubai', Country: 'UAE', Airport: 'Dubai Airport', AirportCode: 'DXB'}];
+    var departureAirports = [{City: 'Saigon', Country: 'Vietnam', Airport: 'Tan San Nhat Airport', AirportCode: 'SGN', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png', Selected: true}, 
+        {City: 'Dubai', Country: 'UAE', Airport: 'Dubai Airport', AirportCode: 'DXB', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png'},
+        {City: 'Bologna', Country: 'Italy', Airport: 'Bologna Airport', AirportCode: 'BLN', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png'}];
     var selectedDepartureAirports = departureAirports.find(item => item.Selected);
     var departureAirportDescription = `${selectedDepartureAirports.City} (${selectedDepartureAirports.AirportCode})`;
 
