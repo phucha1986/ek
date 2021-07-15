@@ -2,11 +2,13 @@ import store from './../../store.js';
 import React, { useState } from 'react';
 import HeaderNavigation from './HeaderNavigation.js';
 import { useHistory } from 'react-router-dom';
+import $ from 'jquery';
 
 function AuthenticatedHeader() {
   const history = useHistory();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const headerNavigationList = ['BOOK', 'MANAGE', 'EXPIRIENCE', 'WHERE TO FLY', 'LOYALITY', 'HELP'];
+  const [isHeaderOnScreen, setIsHeaderOnScreen] = useState(true);
 
   function showProfile()
   {
@@ -25,14 +27,28 @@ function AuthenticatedHeader() {
     history.push('/');
   }
 
+  function isVisible($el) {
+    let docViewTop = $(window).scrollTop();
+    let docViewBottom = docViewTop + $(window).height();
+    let elTop = $el.offset().top;
+    let elBottom = elTop + $el.height();
+    return((elBottom <= docViewBottom) && (elTop >= docViewTop));
+  }
+
+  $(function() {  
+    window.onscroll = () =>  {
+      setIsHeaderOnScreen(isVisible($(".main-navigation")));      
+    };
+  });
+  
   return (
     <header data-auto="header" role="presentation">
       <div className="main-navigation">
         <div className="e-container e-container--relative">
-          <a href="/vn/english/" data-id="header_logo_link" data-link="Home" className="brand-logo">
-            <img title="Emirates logo" alt="Emirates logo" className="brand-logo__image loading" aria-hidden="false" aria-label="Emirates logo" src="https://c.ekstatic.net/ecl/logos/emirates/emirates-logo-badge.svg?h=d-52wmsnqryhi7L83BAKpg" data-was-processed="true"/>
-            <img title="Emirates logo" alt="Emirates logo" className="brand-logo__image-small" aria-hidden="false" aria-label="Emirates logo" src="https://c.ekstatic.net/ecl/logos/emirates/emirates-logo-horizontal.svg?h=nMiqF1sXP0LwuM-vCquofw"/>
-          </a>
+          <a href="/" data-id="header_logo_link" data-link="Home" className={`brand-logo ${!isHeaderOnScreen ? 'brand-logo-sticky' : ''}`}>
+            <img title="Emirates logo" alt="Emirates logo" className={`brand-logo__image loading ${!isHeaderOnScreen ? 'brand-logo__image-sticky' : ''}`} aria-hidden="false" aria-label="Emirates logo" src="https://c.ekstatic.net/ecl/logos/emirates/emirates-logo-badge.svg?h=d-52wmsnqryhi7L83BAKpg" data-was-processed="true"/>
+            <img title="Emirates logo" alt="Emirates logo" className={`brand-logo__image-small ${!isHeaderOnScreen ? 'brand-logo__image-small-sticky' : ''}`} aria-hidden="false" aria-label="Emirates logo" src="https://c.ekstatic.net/ecl/logos/emirates/emirates-logo-horizontal.svg?h=nMiqF1sXP0LwuM-vCquofw"/>
+          </a>          
         </div>
         <div className="e-container main-navigation__container">
           <div className="main-navigation__content">
@@ -41,7 +57,7 @@ function AuthenticatedHeader() {
             </div>
             <nav className="main-navigation__nav">
               <div>                              
-                <HeaderNavigation headerNavigationList={headerNavigationList}/>                                  
+                <HeaderNavigation headerNavigationList={headerNavigationList} isHeaderOnScreen={isHeaderOnScreen}/>                                  
               </div>
             </nav>
 

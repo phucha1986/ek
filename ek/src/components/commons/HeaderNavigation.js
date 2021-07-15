@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { NavLink, Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 function HeaderNavigation(params) {
-  const [isMenuHover, setIsMenuHover] = useState(false);
+  const [isMenuHover, setIsMenuHover] = useState(false);    
+  const cssTop = params.isHeaderOnScreen ? "55px" : "0px";
 
   function onMenuHover(value)
   {
@@ -13,15 +14,15 @@ function HeaderNavigation(params) {
     return (
       <button key={i} aria-expanded="true" role="link" type="button" className={`nav__list-item-text nav__list-item-text--desktop  header-popup__btn--uppercase call-to-action call-to-action--multiline header-popup__btn ${i == 0 ? 'header-popup__btn--active' : ''}`}><div className="call-to-action__multiline-wrapper header-popup__btn-content"><span className="header-popup__btn-content-wrapper">{item}</span><span aria-hidden="true" className="header-popup__arrow"></span></div></button>
     );
-  });
+  }); 
 
   return (
     <div className="nav__desktop-wrapper">
       {navigationMenu}            
-      <div style={{top: '55px'}} className="header-popup__wrapper header-popup__wrapper--active header-popup__wrapper--with-tabs">
+      <div style={{top: cssTop}} className={`header-popup__wrapper ${params.isHeaderOnScreen ? 'header-popup__wrapper--active' : 'header-popup__wrapper--sticky header-popup__wrapper--active'} header-popup__wrapper--with-tabs`}>
         <div>
           <div className="header-popup__content">
-            <div className="second-level-menu second-level-menu--desktop tabs">
+            <div className={`${params.isHeaderOnScreen ? 'second-level-menu' : 'second-level-menu--sticky'} second-level-menu--desktop tabs`}>
               <div>
                 <ul className="second-level-menu__list tabs__list" style={isMenuHover ? {marginBottom: '342px'} : {marginBottom: '0px'}}>
                   <li className="second-level-menu__list-item tabs__active-tab" role="presentation" onFocus={() => onMenuHover(true)}>
