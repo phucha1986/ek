@@ -5,55 +5,41 @@ import EKCheckbox from '../commons/EKCheckbox';
 import EKButton from '../commons/EKButton';
 import LoginTitle from '../login/LoginHeader';
 import store from './../../store.js';
-import { useHistory } from 'react-router-dom';
+import { loggedIn } from '../../action_creators/loginCreator';
+import { connect } from 'react-redux';
 
-function Login() {
-  const history = useHistory();
-  const[errorList, setErrorList] = useState([]);
-  const[userNameValue, setUserNameValue] = useState('EK619931045');
-  const[passwordValue, setPasswordValue] = useState('test');
-  const[isLogging, setIsLogging] = useState(false);
+function Login(params) {  
+  const [errorList, setErrorList] = useState([]);  
+  const [userNameValue, setUserNameValue] = useState('EK619931045');
+  const [passwordValue, setPasswordValue] = useState('test');  
   
   useEffect(() => {
     document.title = "Login to Emirates";
   }, []);
 
-
-  const loggedInAction = () => ({ type: 'loggedIn', payload: { userName: 'Antonio', id: 'EK 619 931 045'}});
-
-  const loggedInThunk = (userNameValue) => dispatch => setTimeout(function(){
-    if(userNameValue === "EK619931045")
-    {      
-      dispatch(loggedInAction());      
-      localStorage.setItem ('loggedIn', true);
-      history.push('/MyStatement');
-    }
-  }, 1500);
-
-  function login()
+  const clientSideValidation = () =>
   {
+    let result = true;
     setErrorList([]);
 
     if(userNameValue === '')
     {      
-      setErrorList(errorMessages => [...errorMessages, ["Email address or Emirates Skywards number: This is a mandatory field, please check and try again. "]]);
+      setErrorList(current => ([...current, "Email address or Emirates Skywards number: This is a mandatory field, please check and try again. "]));
+      result = false;
     }
     if(passwordValue === '')
     {      
-      setErrorList(errorMessages => [...errorMessages, ["Password: This is a mandatory field, please check and try again. "]]);
-    }            
+      setErrorList(current => ([...current, "Password: This is a mandatory field, please check and try again. "]));
+      result = false;
+    }    
+    return result;
+  };
 
-    if(errorMessages.length == 0)
-    {
-      setIsLogging(true);
-      store.dispatch(
-        loggedInThunk(userNameValue)
-      );
-    }        
-  }
-  function handleSubmit(e)
-  {    
-    login();
+  function handleSubmit()
+  {        
+    store.dispatch(
+      loggedIn(userNameValue, passwordValue)
+    );  
     return false;
   }
 
@@ -78,7 +64,7 @@ function Login() {
                 <div className="login-form__remember">
                   <EKCheckbox id="chkRememberMe" title="Keep me logged in on this device" />
                 </div>
-                <EKButton id="btnLogin" title="Login" handleSubmit={handleSubmit} IsLoading={isLogging} />
+                <EKButton id="btnLogin" title="Login" handleSubmit={handleSubmit} clientSideValidation={clientSideValidation} EnableLoading="true" LoadingText="Logging" />
                 
               </section></div><div className="split__or-line login-central__or-line"><img title="" alt="" className="split__or login-central__or" aria-hidden="false" src="https://c.ekstatic.net/account/uiassets/or.svg"/></div><div className="split__right login-central__split-right"><div><div className="skywards-form"><section className="skywards-form__second-part-container"><h2 className="skywards-form__title">Not an Emirates Skywards member yet?</h2><div><div className="skywards-form__text"><p>Register now to make the most of every mile with <a data-id="pagebody_link" data-link="Emirates Skywards" title="Emirates Skywards" href="/account/vn/vietnamese/light-registration/?section=MYA&amp;th=8dc2ce9d13387344e461cf5bbacb6861f7c4731d" className="link link--with-hover-bg link--default link--underline skywards-form__link"><span className="link__text link__text--underline">Emirates Skywards</span></a></p></div></div><a data-id="pagebody_cta" data-link="Register now" title="Tham gia ngay" href="/account/vn/vietnamese/light-registration/?section=MYA&amp;th=8dc2ce9d13387344e461cf5bbacb6861f7c4731d&amp;refurl=%2Fvn%2Fvietnamese" className="link link--default skywards-form__register-now call-to-action call-to-action__secondary call-to-action--middle"><span className="link__text">Join now</span></a></section></div></div></div></div></div></div></div>
 
@@ -86,4 +72,10 @@ function Login() {
   );
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+      isAuthenticated: state.isAuthenticated
+  }
+}
+
+export default connect(mapStateToProps)(Login);

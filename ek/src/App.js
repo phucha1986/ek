@@ -4,27 +4,24 @@ import AuthenticatedHeader from './components/commons/AuthenticatedHeader';
 import Footer from './components/commons/Footer';
 import MyStatement from './components/myaccount/MyStatement';
 import Login from './components/login/Login';
-import React, { useState } from 'react';
-import store from './store.js';
+import React from 'react';
 import BookAFlight from './components/book/BookAFlight';
-import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import { connect } from 'react-redux';
+//import { useHistory, withRouter } from 'react-router-dom';
 
+function App(params) {
+  // const [storeState, setStoreState] = useState(store.getState()); 
+  // store.subscribe(() => setStoreState(store.getState()));
+  const isAuthenticated = params.isAuthenticated || localStorage.getItem ('loggedIn') === "true";
+  const header = isAuthenticated ? <AuthenticatedHeader /> : <Header />;    
 
-function App() {
-  
-  const [storeState, setStoreState] = useState(store.getState()); 
-  store.subscribe(() => setStoreState(store.getState()));
-  const isAuthenticated = storeState.isAuthenticated || localStorage.getItem ('loggedIn') == "true";
-  console.log(isAuthenticated);
-  const header = isAuthenticated ? <AuthenticatedHeader /> : <Header />;
-  //let mainContent = isAuthenticated ? <MyStatement /> : ;
-
-  return (
+  return (    
     <Router>          
       {header}      
       <main id="maincontent">
         <Route>
-          {!isAuthenticated ? <Login /> : ''}
+          {!isAuthenticated ? <Login /> : <Redirect to="/MyStatement" />}
         </Route>
         <Route path="/MyStatement">
           <MyStatement />
@@ -34,8 +31,14 @@ function App() {
         </Route>
       </main>
       <Footer isAuthenticated={isAuthenticated} />
-    </Router>
+    </Router>    
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+      isAuthenticated: state.isAuthenticated
+  }
+}
+
+export default connect(mapStateToProps)(App);
