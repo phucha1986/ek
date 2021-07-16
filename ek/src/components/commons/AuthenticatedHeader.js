@@ -9,7 +9,8 @@ function AuthenticatedHeader() {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const headerNavigationList = ['BOOK', 'MANAGE', 'EXPIRIENCE', 'WHERE TO FLY', 'LOYALITY', 'HELP'];
   const [isHeaderOnScreen, setIsHeaderOnScreen] = useState(true);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const userObject = localStorage.getItem('user') || new Object();
+  const [user, setUser] = useState(JSON.parse(userObject));
 
   function showProfile()
   {

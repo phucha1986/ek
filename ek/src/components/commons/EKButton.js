@@ -4,20 +4,19 @@ const EKButton = (params) => {
   const [isLoading, setIsLoading] = useState(false);
   const onHandleSubmit = async () =>
   { 
-    if(typeof params.clientSideValidation !== "function" || !params.clientSideValidation())
+    if(typeof params.clientSideValidation !== "function" || !params.clientSideValidation() || isLoading)
     {
       return;
     }  
 
     if(params.EnableLoading)
-    {      
-      setIsLoading(true);
-      let promise = new Promise((resolve, reject) => {
-        resolve(params.handleSubmit());        
-      });
-      
-      let result = await promise;
-      if(result === "OK") setIsLoading(false);
+    {           
+      setIsLoading(true);         
+      let handleResult = await params.handleSubmit();
+      if(handleResult == params.SuccessCode)
+      {
+        setIsLoading(false);
+      }
 
     }else{
       params.handleSubmit();

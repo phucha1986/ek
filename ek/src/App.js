@@ -10,9 +10,7 @@ import { BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 //import { useHistory, withRouter } from 'react-router-dom';
 
-function App(params) {
-  // const [storeState, setStoreState] = useState(store.getState()); 
-  // store.subscribe(() => setStoreState(store.getState()));
+function App(params) {  
   const isAuthenticated = params.isAuthenticated || localStorage.getItem ('loggedIn') === "true";
   const header = isAuthenticated ? <AuthenticatedHeader /> : <Header />;    
 

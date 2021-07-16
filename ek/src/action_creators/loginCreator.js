@@ -10,8 +10,8 @@ const fakeLoginAPI = (userNameValue, passwordValue) => {
 }
 
 export const loggedIn = (userNameValue, passwordValue) => {
-    return async function loggedInThunk(dispatch){        
-        let loginResult = await fakeLoginAPI(userNameValue, passwordValue);            
+    return async function loggedInThunk(dispatch){             
+        let loginResult = await fakeLoginAPI(userNameValue, passwordValue);
         if(loginResult === "OK")
         {
             localStorage.setItem("loggedIn", true);
