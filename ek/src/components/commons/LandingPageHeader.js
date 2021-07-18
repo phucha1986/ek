@@ -1,15 +1,15 @@
-import store from './../../store.js';
+import store from '../../store.js';
 import React, { useState } from 'react';
 import HeaderNavigation from './HeaderNavigation.js';
 import { useHistory } from 'react-router-dom';
 import $ from 'jquery';
 
-function AuthenticatedHeader() {
+function LandingPageHeader() {
   const history = useHistory();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const headerNavigationList = ['BOOK', 'MANAGE', 'EXPIRIENCE', 'WHERE TO FLY', 'LOYALITY', 'HELP'];
   const [isHeaderOnScreen, setIsHeaderOnScreen] = useState(true);
-  const userObject = localStorage.getItem('user') || new Object();
+  const userObject = localStorage.getItem('user') ?? new Object();  
   const [user, setUser] = useState(JSON.parse(userObject));
 
   function showProfile()
@@ -44,7 +44,7 @@ function AuthenticatedHeader() {
     };
   });
   
-  return (
+  return (    
     <header data-auto="header" role="presentation">
       <div className="main-navigation">
         <div className="e-container e-container--relative">
@@ -79,4 +79,4 @@ function AuthenticatedHeader() {
   );
 }
 
-export default AuthenticatedHeader;
+export default LandingPageHeader;

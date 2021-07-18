@@ -1,30 +1,40 @@
 import './App.css';
-import Header from './components/commons/Header';
-import AuthenticatedHeader from './components/commons/AuthenticatedHeader';
+import LoginHeader from './components/commons/LoginHeader';
+import LandingPageHeader from './components/commons/LandingPageHeader';
 import Footer from './components/commons/Footer';
 import MyStatement from './components/myaccount/MyStatement';
 import Login from './components/login/Login';
-import React from 'react';
+import React, { useEffect } from 'react';
 import BookAFlight from './components/book/BookAFlight';
-import { BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
-//import { useHistory, withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router';
 
 function App(params) {  
   const isAuthenticated = params.isAuthenticated || localStorage.getItem ('loggedIn') === "true";
-  const header = isAuthenticated ? <AuthenticatedHeader /> : <Header />;    
+  const header = isAuthenticated ? <LandingPageHeader /> : <LoginHeader />;
+  const history = useHistory();
+
+  // useEffect(() => {
+  //   if(params.isAuthenticated)
+  //   {
+  //     history.push("/MyStatement");
+  //   }else{
+  //     history.push("/Login");
+  //   }
+  // }, [params.isAuthenticated]);
 
   return (    
     <Router>          
       {header}      
       <main id="maincontent">
-        <Route>
-          {!isAuthenticated ? <Login /> : <Redirect to="/MyStatement" />}
+        <Route path="/Login">
+          <Login />
         </Route>
         <Route path="/MyStatement">
           <MyStatement />
         </Route>
-        <Route path="/BookAFlight">
+        <Route>
           <BookAFlight/>
         </Route>
       </main>

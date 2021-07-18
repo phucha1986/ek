@@ -1,4 +1,4 @@
-function Header() {
+function LoginHeader() {
   return (
     <header className="main-login-navigation" data-auto="header">
       <div className="e-container e-container--relative">
@@ -19,4 +19,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default LoginHeader;

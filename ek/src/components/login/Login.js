@@ -7,15 +7,25 @@ import LoginTitle from '../login/LoginHeader';
 import store from './../../store.js';
 import { loggedIn } from '../../action_creators/loginCreator';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router';
+
 
 function Login(params) {  
   const [errorList, setErrorList] = useState([]);  
   const [userNameValue, setUserNameValue] = useState('EK619931045');
   const [passwordValue, setPasswordValue] = useState('test');  
-  
+  const history = useHistory();
+
   useEffect(() => {
     document.title = "Login to Emirates";
   }, []);
+
+  useEffect(() => {
+    if(params.isAuthenticated)
+    {
+      history.push("/MyStatement");
+    }
+  }, [params.isAuthenticated]);
 
   const clientSideValidation = () =>
   {

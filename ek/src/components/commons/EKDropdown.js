@@ -20,7 +20,7 @@ const EKDropdown = (params) => {
       {
         setIsShow(false);
       }
-    }, 500);
+    }, 200);
     
   }
 
