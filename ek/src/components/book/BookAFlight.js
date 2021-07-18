@@ -11,7 +11,7 @@ function BookAFlight() {
 
     return (
         <>
-            <Title />            
+            {/* <Title />             */}
             <SearchBox />
             <CovidInformation />
         </>

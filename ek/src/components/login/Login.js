@@ -9,7 +9,6 @@ import { loggedIn } from '../../action_creators/loginCreator';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 
-
 function Login(params) {  
   const [errorList, setErrorList] = useState([]);  
   const [userNameValue, setUserNameValue] = useState('EK619931045');
@@ -23,7 +22,7 @@ function Login(params) {
   useEffect(() => {
     if(params.isAuthenticated)
     {
-      history.push("/MyStatement");
+      history.push("/Account");
     }
   }, [params.isAuthenticated]);
 

@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-function MyStatement() {
-
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+function MyStatement() {  
+  const [user, setUser] = useState('');
   useEffect(() => {
     document.title = "My Statement  | Account | Emirates Skywards | Emirates Vietnam";
+    let userObject = localStorage.getItem('user');
+    if(userObject.length)
+    {
+      setUser(JSON.parse(userObject));
+    }
   }, []);
 
   return (

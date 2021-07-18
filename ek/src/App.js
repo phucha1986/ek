@@ -8,11 +8,16 @@ import React, { useEffect } from 'react';
 import BookAFlight from './components/book/BookAFlight';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useHistory, matchPath  } from 'react-router';
+import EKHeader from './components/commons/EKHeader';
+import EKHero from './components/commons/EKHero';
+import EKOperationalUpdate from './components/commons/EKOperationalUpdate';
 
 function App(params) {  
   const isAuthenticated = params.isAuthenticated || localStorage.getItem ('loggedIn') === "true";
-  const header = isAuthenticated ? <LandingPageHeader /> : <LoginHeader />;
+  const headerNavigationList = ['BOOK', 'MANAGE', 'EXPERIENCE', 'WHERE WE FLY', 'LOYALTY', 'HELP'];
+  const header = !matchPath(window.location.pathname, "/Login") || isAuthenticated ? <EKHeader headerNavigationList={headerNavigationList}/> : <LoginHeader />;
+
   const history = useHistory();
 
   // useEffect(() => {
@@ -25,16 +30,21 @@ function App(params) {
   // }, [params.isAuthenticated]);
 
   return (    
-    <Router>          
+    <Router>
+      <EKOperationalUpdate />
       {header}      
       <main id="maincontent">
+        <EKHero />
         <Route path="/Login">
           <Login />
         </Route>
-        <Route path="/MyStatement">
+        <Route path="/Account">
           <MyStatement />
         </Route>
-        <Route>
+        <Route path="/Book">
+          <BookAFlight/>
+        </Route>
+        <Route exact path="/">
           <BookAFlight/>
         </Route>
       </main>
