@@ -12,19 +12,24 @@ import { useHistory } from 'react-router';
 function Login(params) {  
   const [errorList, setErrorList] = useState([]);  
   const [userNameValue, setUserNameValue] = useState('EK619931045');
-  const [passwordValue, setPasswordValue] = useState('test');  
+  const [passwordValue, setPasswordValue] = useState('test');
+  const isAuthenticated = params.isAuthenticated || localStorage.getItem ('loggedIn') === "true";
   const history = useHistory();
 
   useEffect(() => {
     document.title = "Login to Emirates";
-  }, []);
-
-  useEffect(() => {
-    if(params.isAuthenticated)
+    if(isAuthenticated)
     {
       history.push("/Account");
     }
-  }, [params.isAuthenticated]);
+  }, []);
+
+  useEffect(() => {
+    if(isAuthenticated)
+    {
+      history.push("/Account");
+    }
+  }, [isAuthenticated]);
 
   const clientSideValidation = () =>
   {

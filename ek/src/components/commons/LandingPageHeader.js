@@ -4,7 +4,6 @@ import HeaderNavigation from './HeaderNavigation.js';
 import { useHistory } from 'react-router-dom';
 import $ from 'jquery';
 import { connect } from 'react-redux';
-import { Link} from 'react-router-dom';
 
 function LandingPageHeader(params) {
   const history = useHistory();

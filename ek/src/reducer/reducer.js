@@ -6,10 +6,9 @@ const reducer = produce((draft = {user: {userName: ''}, isAuthenticated: false},
         {
             case 'loggedIn':
                 draft.user = action.payload.user;
-                draft.isAuthenticated = true;                
-                console.log("stored");
+                draft.isAuthenticated = true;
                 return draft;
-            case 'loggedOut':
+            case 'loggedOut':                
                 draft.isAuthenticated = false;
                 draft.user = null;
                 return draft;
