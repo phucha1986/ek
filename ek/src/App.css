@@ -1396,10 +1396,7 @@ hr.abper-112-hr {
 .DateInput_label__multi {
   width: 50%;
 }
-.icon {
-  display:inline-flex;
-  direction: ltr;
- }
+
  .icon-chevron-down::before {
   content: "\f148";
 
@@ -1535,3 +1532,15 @@ hr.abper-112-hr {
 [dir=rtl] .operational-update__expander{right:auto!important;left:0}[dir=rtl] 
 .operational-update__wrapper .operational-update__label.not-first__label{padding:0 25px!important}
 [dir=rtl] .expander-with__close.operational-update__expander{left:20px!important}
+
+.wc1
+{
+  margin: 0 auto;
+}
+.wi4
+{
+  width: 100%;
+  background-color: white;
+  border-radius: 0.3rem;
+  box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,.19);
+}

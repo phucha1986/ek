@@ -38,16 +38,39 @@ function App(params) {
         }
       }
     ]},
-    {ItemText: 'MANAGE', Level2: 
-      [{ItemText: "Manage"}, {ItemText: "Before You Fly"}, {ItemText: "Baggage"}, {ItemText: "Visa and Support"}]},
-    {ItemText: 'EXPERIENCE', Level2: 
-      [{ItemText: "Inflight Experience"}, {ItemText: "The Emirates Experience"}, {ItemText: "Family Travel"}, {ItemText: "Fly Better"}, {ItemText: "About Us"}]},
-    {ItemText: 'WHERE WE FLY', Level2: 
-      [{ItemText: "Our Destinations"}, {ItemText: "Our Travel Partner"}]},
-    {ItemText: 'LOYALTY', Level2: 
-      [{ItemText: "Emirates Skywards"}, {ItemText: "Business Rewards"}]},
-    {ItemText: 'HELP', Level2: 
-      [{ItemText: "Help and Contacts"}, {ItemText: "Covid-19 Travel Supports"}, {ItemText: "Your Support"}]}
+    {ItemText: 'MANAGE', Level2: [{
+      ItemText: "Manage", Level3: {
+        Title: 'Manage your booking', Link: "/Book", 
+          Items: [
+            [{Title: 'Retrieve your booking', Link: '/Book'}, {Title: 'Cancel your booking', Link: '/Book'}, {Title: 'Choose your seat', Link: '/Book'}, {Title: 'Manage chauffeur-drive', Link: '/Book'}, {Title: 'Change your booking', Link: '/Book'}, {Title: 'Upgrade your flight', Link: '/Book'}, {Title: 'Book accessible travel', Link: '/Book'}],
+            [{Title: 'Check in online', Link: '/Book'}],
+            [{Title: 'Flight status', Link: '/Book'}]
+          ]
+        }
+      }, {
+      ItemText: "Before You Fly", Level3: {Title: 'Before you fly', Link: "/Book"}}, {
+      ItemText: "Baggage", Level3: {Title: 'Baggage information', Link: "/Book"}}, {
+      ItemText: "Visa and Support", Level3: {Title: 'Find your visa requirements', Link: "/Book"}}]}, 
+    {ItemText: 'EXPERIENCE', Level2: [{
+      ItemText: "Inflight Experience", Level3: {Title: 'Inflight Experience', Link: "/Book"} }, {
+      ItemText: "The Emirates Experience", Level3: {Title: 'The Emirates Experience', Link: "/Book"}}, {
+      ItemText: "Family Travel", Level3: {Title: 'Family Travel', Link: "/Book"} }, {
+      ItemText: "Fly Better", Level3: {Title: 'Fly Better', Link: "/Book"}}, { 
+      ItemText: "About Us", Level3: {Title: 'About Us', Link: "/Book"}}
+    ]},
+    {ItemText: 'WHERE WE FLY', Level2: [{
+      ItemText: "Our Destinations", Level3: {Title: 'Our Destinations', Link: "/Book"}}, {
+      ItemText: "Our Travel Partner", Level3: {Title: 'Our Travel Partner', Link: "/Book"}}
+    ]},
+    {ItemText: 'LOYALTY', Level2: [{
+      ItemText: "Emirates Skywards", Level3: {Title: 'Emirates Skywards', Link: "/Book"}}, {
+      ItemText: "Business Rewards", Level3: {Title: 'Business Rewards', Link: "/Book"}}
+    ]},
+    {ItemText: 'HELP', Level2: [{
+      ItemText: "Help and Contacts", Level3: {Title: 'Help and Contacts', Link: "/Book"}}, {
+      ItemText: "Covid-19 Travel Supports", Level3: {Title: 'Covid-19 Travel Supports', Link: "/Book"}}, {
+      ItemText: "Your Support", Level3: {Title: 'Your Support', Link: "/Book"}}
+    ]}
   ];
 
   

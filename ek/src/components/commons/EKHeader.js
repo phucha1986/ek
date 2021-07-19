@@ -42,16 +42,19 @@ function EKHeader(params) {
   }, [wrapperRef]);
 
   useEffect(() => {
-
+    console.log("isauthenticated " + isAuthenticated);
     let userObject = localStorage.getItem('user');
     if (userObject.length) {
       setUser(JSON.parse(userObject));
+    }else{
+      setUser('');
     }
   }, [isAuthenticated]);
 
   const logOut = () =>
   {    
     store.dispatch(loggedOut());
+    history.push('/');
     setIsProfileClicked(false);
   }
 

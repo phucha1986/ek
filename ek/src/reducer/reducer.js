@@ -11,6 +11,7 @@ const reducer = produce((draft = {user: {userName: ''}, isAuthenticated: false},
             case 'loggedOut':                
                 draft.isAuthenticated = false;
                 draft.user = null;
+                console.log(draft);
                 return draft;
             default:
                 return draft;

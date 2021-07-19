@@ -3,9 +3,9 @@ const loggedOutAction = () => ({
   });
 
 export const loggedOut = () => {
-    return async function loggedOutThunk(dispatch){                     
+    return function loggedOutThunk(dispatch){                     
         localStorage.setItem("loggedIn", false);
-        localStorage.setItem("user", null);
-        dispatch(loggedOutAction);
+        localStorage.setItem("user", null);        
+        dispatch(loggedOutAction());
     }
 };

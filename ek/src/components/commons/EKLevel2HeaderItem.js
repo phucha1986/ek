@@ -56,7 +56,7 @@ function EKLevel2HeaderItem(params) {
   return (
     <li className={isClicked || (numberClicked == 0 && ItemIndex == 0) ? 'second-level-active-list' : ''} role="presentation" key={ItemIndex} ref={wrapperRef}>
       <a aria-controls="submenu-0-0" role="tab" className="js-secondlevel-link secondlevel-link" data-id="header_nav_section" onClick={onMenuClick} data-submenu="0-0">{ItemText}<span className="secondlevel-mobile-arrow-icon icon icon-chevron-down" aria-hidden="true"></span></a>
-      <div role="tabpanel" id="submenu-0-0" className="megalinks__thirdlevel">
+      <div role="tabpanel" id="submenu-0-0" className="megalinks__thirdlevel" style={{display: isClicked || (numberClicked == 0 && ItemIndex == 0) ? 'block' : 'none'}}>
         <div className="js-megalinks-thirdlevel-inner megalinks__thirdlevel-inner">
           <div className="thirdlevel-title-holder" role="heading" aria-level="2">
             <a className="thirdlevel-title" title="Fly Better" data-id="header_nav_link">{typeof Level3 != 'undefined' ? Level3.Title : ''}</a>

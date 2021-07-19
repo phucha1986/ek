@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import '../../css/vendor.css';
+import '../../css/ek-styles.css';
+
 function MyStatement() {  
   const [user, setUser] = useState('');
   useEffect(() => {

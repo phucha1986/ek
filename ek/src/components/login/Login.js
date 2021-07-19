@@ -8,6 +8,7 @@ import store from './../../store.js';
 import { loggedIn } from '../../action_creators/loginCreator';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
+import '../../css/vendor.css';
 
 function Login(params) {  
   const [errorList, setErrorList] = useState([]);  

@@ -9,8 +9,8 @@ const EKCheckbox = (params) => {
   }
   return (
     <div className="checkbox-field">
-      <input className="checkbox-field__input" id={params.id} type="checkbox" name="rememberMe" onChange={onRememberMeToggle} checked={rememberMeToggle}/>
-      <label for={params.id} className={`checkbox-field__label icon ${rememberMeToggle ? 'icon-check' : ''}`}>{params.title}
+      <input className="checkbox__input" id={params.id} type="checkbox" name="rememberMe" onChange={onRememberMeToggle} checked={rememberMeToggle}/>
+      <label for={params.id} className={`checkbox__text ${rememberMeToggle ? 'icon-check' : ''}`}>{params.title}
       </label>
     </div> 
   );
