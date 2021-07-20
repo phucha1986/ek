@@ -41,7 +41,7 @@ function EKLevel2HeaderItem(params) {
         <Link className="third-level-mobile-heading" title="Search for a flight" to={subItem.Link}  data-id="header_nav_link">
           <span className="no-underline no-external-link">
             <i className="thirdlevel__menu-link">{subItem.Title}</i>
-            <span aria-hidden="true" class="arrow-indicator icon icon-chevron-right"></span>
+            <span aria-hidden="true" className="arrow-indicator icon icon-chevron-right"></span>
           </span>
         </Link>      
       </li>});

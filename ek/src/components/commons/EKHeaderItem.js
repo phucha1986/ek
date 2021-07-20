@@ -28,7 +28,7 @@ function EKHeaderItem(params) {
   }
 
   let level2 = Level2.map((item, i) => {    
-    return <EKLevel2HeaderItem ItemIndex={i} Level3={item.Level3} ItemText={item.ItemText} IsShow={isClicked} CloseMenu={() => {setIsClicked(false);}} />
+    return <EKLevel2HeaderItem key={i} ItemIndex={i} Level3={item.Level3} ItemText={item.ItemText} IsShow={isClicked} CloseMenu={() => {setIsClicked(false);}} />
   });
 
   return (

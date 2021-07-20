@@ -59,7 +59,7 @@ function EKHeader(params) {
   }
 
   let parentMenu = params.headerNavigationList.map((item, i) => {
-    return <EKHeaderItem ItemIndex={i} ItemText={item.ItemText} Level2={item.Level2} />
+    return <EKHeaderItem ItemIndex={i} ItemText={item.ItemText} Level2={item.Level2} key={i}/>
   });
 
   return (

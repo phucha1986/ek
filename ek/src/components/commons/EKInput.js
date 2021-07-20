@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 const EKInput = (params) => {
 
-  const[inputToggle, setInputToggle] = useState(false);  
+  const[inputToggle, setInputToggle] = useState(false);
   function onInputToggle()
   {
     setInputToggle(!inputToggle);    
