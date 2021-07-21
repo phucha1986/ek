@@ -1,7 +1,8 @@
 import EKDropdown from "../commons/EKDropdown";
-import EKDatePicker from "../commons/EKDatePicker";
+import { EKDatePicker } from "../commons/EKDatePicker";
 import EKCheckbox from "../commons/EKCheckbox";
 import { departureAirports, arrivalAirports, currentLocation } from "../../data/book";
+import { EKDatePickerProvider } from "../commons/EKDatePickerContext";
 
 function SearchBox() {
     
@@ -84,6 +85,11 @@ function SearchBox() {
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div className="grid__item medium--one-third search-flight__datepicker search-flight--hidden-container">                                                    
+                                                    <EKDatePickerProvider>
+                                                        <EKDatePicker />
+                                                    </EKDatePickerProvider>
+                                                </div>                                                
                                             </div>
                                         </div>
                                         <div className=""></div>

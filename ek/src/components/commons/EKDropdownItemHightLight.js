@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ReactHtmlParser from 'react-html-parser'; 
 
 const EKDropdownItemHightLight = (params) => {
-  const { Item, Index, SelectedItem, SetSelectedItem, SearchText, Visible, IsSearching } = params;
+  const { Item, Index, SetSelectedItem, SearchText, ShowingDropdownPopup, IsSearching } = params;
   const regEx = new RegExp(SearchText, "gi");
 
   const cityIndex = Item.City.search(regEx);
@@ -18,21 +18,9 @@ const EKDropdownItemHightLight = (params) => {
   const airport = Item.Airport.replace(regEx , `<span class='to-highlight'>${airportHighlight}</span>`);
 
   const highlightAirportCode = Item.AirportCode.search(new RegExp(SearchText, "i")) != -1;  
-  
-  const onItemSelected = item =>
-  {
-    SetSelectedItem(item);    
-  };
-
-  useEffect(() => {
-    if(Index == 0 && IsSearching && SearchText.length)
-    {
-      SetSelectedItem(Item);
-    }
-  }, [Visible]);
 
   return (    
-    <li tabindex="-1" className="location__item js-dropdown-select-item js-location-list pointer" key={Index} onClick={() => { onItemSelected(Item);}}>
+    <li tabindex="-1" className="location__item js-dropdown-select-item js-location-list pointer" key={Index} onClick={() => { SetSelectedItem({...Item});}}>
       <div tabindex="-1" className="dropdown__link js-select-body js-location-link">
         <div className="location__airport" aria-hidden="true">
           <p className="location__airport__city" data-location-value="Abidjan">

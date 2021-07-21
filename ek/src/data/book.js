@@ -1,10 +1,10 @@
-export const departureAirports = [{City: 'Saigon', Country: 'Vietnam', Airport: 'Tan San Nhat Airport', AirportCode: 'SGN', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png', Selected: true}, 
+export const departureAirports = [{City: 'Saigon', Country: 'Vietnam', Airport: 'Tan San Nhat Airport', AirportCode: 'SGN', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png', IsCurrentLocation: true, IsSelected: true}, 
     {City: 'Dubai', Country: 'UAE', Airport: 'Dubai Airport', AirportCode: 'DXB', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png'},
     {City: 'Bologna', Country: 'Italy', Airport: 'Bologna Airport', AirportCode: 'BLN', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png'}];
-export const currentLocation = departureAirports.find(item => item.Selected);
+export const currentLocation = departureAirports.find(item => item.IsCurrentLocation);
 
 export const arrivalAirports = [{City: 'Saigon', Country: 'Vietnam', Airport: 'Tan San Nhat Airport', AirportCode: 'SGN', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png'}, 
-    {City: 'Dubai', Country: 'UAE', Airport: 'Dubai Airport', AirportCode: 'DXB',  AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png', Selected: true},
+    {City: 'Dubai', Country: 'UAE', Airport: 'Dubai Airport', AirportCode: 'DXB',  AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png', IsSelected: true},
     {City: 'Amman', Country: 'Jordan', Airport: 'Queen Ali International Airport', AirportCode: 'AMM', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png'},
     {City: 'Accra', Country: 'Ghana', Airport: 'Kotoka International Airport', AirportCode: 'ACC', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png'},
     {City: 'Bahrain', Country: 'Bahrain', Airport: 'Bahrain International Airport', AirportCode: 'BAH', AirlineLogo: 'https://c.ekstatic.net/uiassets/tailfin-emirates.png'},

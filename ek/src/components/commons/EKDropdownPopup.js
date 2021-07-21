@@ -2,36 +2,44 @@ import React, { useState, useEffect } from 'react';
 import EKDropdownItemHightLight from './EKDropdownItemHightLight';
 
 const EKDropdownPopup = (params) => {
-  const { SelectedItem, SetSelectedItem, CurrentLocation, SearchText, IsSearching, Visible} = params;
-  const selectedItem= params.Items.find(item => item.Selected);
+  const { SetSelectedItem, CurrentLocation, SearchText, IsSearching, ShowingDropdownPopup, SetFirstItemToBeSelected} = params;  
 
   const remainingItems = params.Items.filter(item => (
-    (!item.Selected || 
-    item != selectedItem || 
-    (CurrentLocation && item.AirportCode != CurrentLocation.AirportCode)) && 
-    item != selectedItem)
+    item.AirportCode != (CurrentLocation ? CurrentLocation.AirportCode : ''))
   );
   
-  const searchItems = params.Items.filter(item => (IsSearching && SearchText != '' &&
+  const searchItems = params.Items.filter(item => (IsSearching && SearchText.length &&
     (item.City.search(new RegExp(SearchText, "i")) != -1 ||
     item.AirportCode.search(new RegExp(SearchText, "i")) != -1 ||
     item.Country.search(new RegExp(SearchText, "i")) != -1 ||
     item.Airport.search(new RegExp(SearchText, "i")) != -1))
   );
 
-  const displayItems = (IsSearching && SearchText.length ? searchItems : remainingItems).map((item, i) => {    
+  const [refinedItems, setRefinedItems] = useState(IsSearching && SearchText.length ? searchItems : remainingItems);
+
+  const displayItems = refinedItems.map((item, i) => {    
     return (
-      <EKDropdownItemHightLight Item={item} Index={i} SelectedItem={SelectedItem} SetSelectedItem={SetSelectedItem} key={i} SearchText={SearchText} Visible={Visible} IsSearching={IsSearching}/>
+      <EKDropdownItemHightLight Item={item} Index={i} SetSelectedItem={SetSelectedItem} key={i} SearchText={SearchText} ShowingDropdownPopup={ShowingDropdownPopup} IsSearching={IsSearching}/>
     );
-  });
+  });  
 
   const emptySearch = () => { 
     return <>
       <h3 className="location__global__heading--no-results">No results found</h3>
       <p className="location__global__description--no-results">Please recheck the airport or city you've entered, or select one from the list.</p>
     </>;
-  }
+  };
 
+  useEffect(() => {
+    setRefinedItems(IsSearching && SearchText.length ? searchItems : remainingItems);
+  }, [SearchText, IsSearching]);
+
+  useEffect(() => {
+    if(refinedItems && refinedItems.length)
+    {
+      SetFirstItemToBeSelected(refinedItems[0]);
+    }
+  }, [refinedItems]);
   return (    
     <div className="dropdown">
       {CurrentLocation && (!IsSearching || !SearchText.length)  && <section className="location global">

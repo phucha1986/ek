@@ -1,19 +1,41 @@
-const EKDatePicker = (params) => {
+import React, { useContext } from "react";
+import EKCalendars from "./EKCalendars";
+import { EKDatePickerContext } from "./EKDatePickerContext";
+
+const EKDatePicker = () => {
+  const { showingCalendar, 
+    selectingDepartureDate,
+    selectingArrivalDate,
+    departureDateState,
+    arrivalDateState,
+    onDepartChange, onDepartFocus, onDepartBlur, onArrivalFocus, onArrivalBlur
+    } = useContext(EKDatePickerContext);
+  const [isDepartFocus, setIsDepartFocus] = showingCalendar;
+  const [departureDate, setDepartureDate] = departureDateState;
+  const [arrivalDate, setArrivalDate] = arrivalDateState;
+  const [isSelectingDepartureDate, setIsSelectingDepartureDate] = selectingDepartureDate;
+  const [isSelectingArrivalDate, setIsSelectingArrivalDate] = selectingArrivalDate;
+  
 
   return (    
-    <div className="DateInput_wrapper date-input-range-picker">      
-        <div className="DateInput_inner-wrapper">
-          <label for="startDate" className="DateInput_label DateInput_label__multi DateInput_label__focused">{params.FirstText}</label>
-          <label for="endDate" className="DateInput_label DateInput_label__multi DateInput_label__focused">{params.SecondText}</label>
+    <div className={`textfield datefield textfield--defined ${isDepartFocus ? 'textfield--focused textfield__start--focused datefield--expanded' : ''}`}>
+      <div className="textfield__controls">      
+        <div className={`textfield__date textfield__date--first ${isDepartFocus || departureDate.length ? 'textfield__date--active' : ''}`}>
+          <label for="search-flight-date-picker--depart" className="textfield__label">Departing</label>
+          <input id="search-flight-date-picker--depart" type="text" aria-required="true" autocomplete="off" className="textfield__input textfield__input--start" readonly="readonly" data-heading="Please choose your departure date" data-icon="icon icon-outbound-flight" aria-describedby="search-flight-date-picker-depart--message" value={departureDate} onChange={onDepartChange} onFocus={onDepartFocus} onBlur={onDepartBlur}/>          
         </div>
-        <div className="DateRangePicker DateRangePicker_1"><div><div className="DateRangePickerInput DateRangePickerInput_1"><div className="DateInput DateInput_1" role="application"><input className="DateInput_input DateInput_input_1 DateInput_input__readOnly DateInput_input__readOnly_2" aria-label="" type="text" id="startDate" name="startDate" placeholder="" autocomplete="off" readonly="" aria-describedby="DateInput__screen-reader-message-startDate" tabindex="0" value="08 Jul 21" /><p className="DateInput_screenReaderMessage DateInput_screenReaderMessage_1" id="DateInput__screen-reader-message-startDate">Please choose your departure date Use the page up key to select the next month and the page down key to select the previous month. Use arrow keys to select the dates. After selecting the dates, use tab key to select one way or flexible dates options.</p></div><div className="DateRangePickerInput_arrow DateRangePickerInput_arrow_1" aria-hidden="true" role="presentation">-</div><div className="DateInput DateInput_1" role="application"><input className="DateInput_input DateInput_input_1 DateInput_input__readOnly DateInput_input__readOnly_2" aria-label="" type="text" id="endDate" name="endDate" placeholder="" autocomplete="off" readonly="" aria-describedby="DateInput__screen-reader-message-endDate" tabindex="-1" value="13 Aug 21" /><p className="DateInput_screenReaderMessage DateInput_screenReaderMessage_1" id="DateInput__screen-reader-message-endDate">Please choose your departure date Use the page up key to select the next month and the page down key to select the previous month. Use arrow keys to select the dates. After selecting the dates, use tab key to select one way or flexible dates options.</p></div></div></div></div>      
-      <div className=""></div>
-      <div className=""></div>
-      <div className=""></div>
-      
-    </div>
-    
+        <span>-</span>
+        <div className={`textfield__date textfield__date--second ${isDepartFocus || arrivalDate.length ? 'textfield__date--active' : ''}`}>
+          <label for="search-flight-date-picker--return" className="textfield__label">
+            <span className="label-text--default label-text--returning">Returning</span>
+            <span className="label-text--action label-text--return eol-hidden">Add Return</span>
+          </label>
+          <input id="search-flight-date-picker--return" type="text" aria-required="true" autocomplete="off" className="textfield__input textfield__input--end" readonly="readonly" data-heading="Choose your return date " data-icon="icon icon-inbound-flight" aria-describedby="search-flight-date-picker-return--message" tabindex="-1" value={arrivalDate} onChange={onDepartChange} onFocus={onArrivalFocus} onBlur={onArrivalBlur}/>        
+        </div>
+      </div>
+      <EKCalendars />        
+    </div>    
   );
 }
 
-export default EKDatePicker;
+export { EKDatePicker };
