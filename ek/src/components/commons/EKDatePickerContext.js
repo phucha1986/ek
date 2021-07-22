@@ -7,7 +7,9 @@ const EKDatePickerProvider = (params) => {
   const [departureDate, setDepartureDate] = useState('');
   const [arrivalDate, setArrivalDate] = useState('');
   const [isSelectingDepartureDate, setIsSelectingDepartureDate] = useState(false);
-  const [isSelectingArrivalDate, setIsSelectingArrivalDate] = useState(false);  
+  const [isSelectingArrivalDate, setIsSelectingArrivalDate] = useState(false);
+  const [isOneWay, setIsOneWay] = useState(false);
+  
   const onDepartChange = () =>
   {};
   const onDepartFocus = () =>
@@ -37,6 +39,7 @@ const EKDatePickerProvider = (params) => {
       selectingArrivalDate: [isSelectingArrivalDate, setIsSelectingArrivalDate],
       departureDateState: [departureDate, setDepartureDate],
       arrivalDateState: [arrivalDate, setArrivalDate],
+      oneWayState: [isOneWay, setIsOneWay],
       onDepartChange, onDepartFocus, onDepartBlur, onArrivalFocus, onArrivalBlur
       }}>
       {params.children}

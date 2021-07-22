@@ -9,20 +9,22 @@ const EKCalendars = () => {
     selectingArrivalDate,
     departureDateState,
     arrivalDateState,
+    oneWayState,
     onDepartChange, onDepartFocus, onDepartBlur, onArrivalFocus, onArrivalBlur
     } = useContext(EKDatePickerContext);
   const [isDepartFocus, setIsDepartFocus] = showingCalendar;
   const [departureDate, setDepartureDate] = departureDateState;
   const [arrivalDate, setArrivalDate] = arrivalDateState;
   const [isSelectingDepartureDate, setIsSelectingDepartureDate] = selectingDepartureDate;
-  const [isSelectingArrivalDate, setIsSelectingArrivalDate] = selectingArrivalDate;  
+  const [isSelectingArrivalDate, setIsSelectingArrivalDate] = selectingArrivalDate;
+  const [isOneWay, setIsOneWay] = oneWayState;
   
-  let today = new Date();    
+  let today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
   let todayPlus1Month = new Date(today.setMonth(currentMonth + 1));
   const [nextMonth, setNextMonth] = useState(todayPlus1Month.getMonth());
-  const [nextMonthYear, setNextMonthYear] = useState(todayPlus1Month.getFullYear());
+  const [nextMonthYear, setNextMonthYear] = useState(todayPlus1Month.getFullYear());  
   
   const wrapperRef = useRef(null);  
 
@@ -40,11 +42,11 @@ const EKCalendars = () => {
 
     setNextMonthYear((nextMonth === 0) ? nextMonthYear - 1 : nextMonthYear);
     setNextMonth((nextMonth === 0) ? 11 : nextMonth - 1);
-  }
+  };
 
-  const onOneWayClick = () =>
+  const onOneWayChange = event =>
   {
-    
+    setIsOneWay(event.target.checked);    
   };
 
   const onChangeMonthClick = (month) => {
@@ -89,7 +91,7 @@ const EKCalendars = () => {
                 <div className="checkbox__checkmark"></div>My dates are flexible (-/+ 3 days)
               </label>
               <label className="checkbox one-way">
-                <input type="checkbox" className="checkbox__input js-one-way control__one-way" onClick={onOneWayClick}/>
+                <input type="checkbox" className="checkbox__input js-one-way control__one-way" value={isOneWay} onChange={onOneWayChange}/>
                 <div className="checkbox__checkmark"></div>One way
               </label>
             </div>

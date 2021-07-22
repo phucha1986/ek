@@ -15,8 +15,8 @@ import { headerNavigationList } from './data/navigation';
 function App(params) {  
   const isAuthenticated = params.isAuthenticated || localStorage.getItem ('loggedIn') === "true";  
   const location = useLocation();
-  const isLoginPath = location.pathname == "/Login";
-  const isAccountPath = location.pathname == "/Account";
+  const isLoginPath = location.pathname === "/Login";
+  const isAccountPath = location.pathname === "/Account";
   const header = !isLoginPath || isAuthenticated ? <EKHeader headerNavigationList={headerNavigationList}/> : <LoginHeader />;  
 
   return (    

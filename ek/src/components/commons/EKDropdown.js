@@ -93,7 +93,7 @@ const EKDropdown = (params) => {
             <input className="js-field-input field__input js-dropdown-open field__input--active" type="component" name="Departure airport"  autocomplete="off"  id="48c3d056-13f6-455b-adbe-ef94e244b421" aria-autocomplete="inline" aria-live="off" aria-expanded="true" value={descriptions} onFocus={onDropdownFocus} onBlur={onDropdownItemBlur} onChange={onChange} onKeyDown={onKeyDown}/>
             <button type="button" className="clear-x-mobile icon icon-delete-light  js-clear-selected  dropdown__clear" name="clear Departure airport" aria-hidden="true" tabindex="-1" onClick={onDelete}></button>
           </div>
-          {currentLocationSelected && <i class="icon icon-location dropdown__location--icon"></i>}
+          {currentLocationSelected && <i className="icon icon-location dropdown__location--icon"></i>}
         </div>
         <EKDropdownPopup Items={params.Items} isDropDownItemFocus={isDropDownItemFocus} setIsDropDownItemFocus={setIsDropDownItemFocus}  ShowingDropdownPopup={showingDropdownPopup} SetSelectedItem={setSelectedItem} CurrentLocation={CurrentLocation} SearchText={descriptions} IsSearching={isSearching} SetFirstItemToBeSelected={setFirstItemToBeSelected} />
       </div>

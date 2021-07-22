@@ -9,6 +9,7 @@ const EKCalendarCell = (params) => {
     selectingArrivalDate,
     departureDateState,
     arrivalDateState,
+    oneWayState,
     onDepartChange, onDepartFocus, onDepartBlur, onArrivalFocus, onArrivalBlur
     } = useContext(EKDatePickerContext);
   const [isDepartFocus, setIsDepartFocus] = showingCalendar;
@@ -16,7 +17,8 @@ const EKCalendarCell = (params) => {
   const [arrivalDate, setArrivalDate] = arrivalDateState;
   const [isSelectingDepartureDate, setIsSelectingDepartureDate] = selectingDepartureDate;
   const [isSelectingArrivalDate, setIsSelectingArrivalDate] = selectingArrivalDate;
-  const { Month, Year, IsToday, CurrentDate } = params;  
+  const { Month, Year, IsToday, CurrentDate } = params;
+  const [isOneWay, setIsOneWay] = oneWayState;
 
   const checkIsSelectedDate = () =>
   {
@@ -39,7 +41,7 @@ const EKCalendarCell = (params) => {
     return currentDateTime <= todayDateTime;
   };
 
-  const checkDate = checkIsSelectedDate();
+  const [checkDate, setCheckDate] = useState(checkIsSelectedDate());
   const [isSelected, setIsSelected] = useState(checkDate == 1 || checkDate ==2);
   const [isDepartureDate, setIsDepartureDate] = useState(checkDate == 1);
   const [isArrivalDate, setIsArrivalDate] = useState(checkDate == 2);
@@ -71,8 +73,12 @@ const EKCalendarCell = (params) => {
       setIsDepartureDate(true);
       setDepartureDate(selectedDate);
       setIsSelectingDepartureDate(false);
-      setIsSelectingArrivalDate(true);
-    }else if(isSelectingArrivalDate)
+      setIsSelectingArrivalDate(!isOneWay);
+      if(isOneWay)
+      {
+        setIsDepartFocus(false);
+      }
+    }else if(isSelectingArrivalDate && !isOneWay)
     {
       if(departureDate && departureDate.length)
       {
@@ -87,12 +93,8 @@ const EKCalendarCell = (params) => {
       setIsSelectingArrivalDate(false);
       setIsDepartFocus(false);
     }
-
     setIsSelected(true);
   };
-  useEffect(() => {
-    //setInRange();
-  }, []);
 
   const checkIsInRange = () => {    
     if(departureDate && departureDate.length && arrivalDate && arrivalDate.length)
@@ -102,9 +104,10 @@ const EKCalendarCell = (params) => {
       var arrivalDateTime = new Date(arrivalDate).getTime();
       if(currentDateTime > departureDateTime && currentDateTime < arrivalDateTime)
       {
-        setIsInRange(true);
+        return true;
       }
-    }    
+    }
+    return false;
   };
 
   const checkIsBeforeDeparture = () => {    
@@ -113,23 +116,41 @@ const EKCalendarCell = (params) => {
       let currentDateTime = new Date(Year, Month, CurrentDate).getTime();
       let departureDateTime = new Date(departureDate).getTime();      
 
-      setIsBeforeDeparture(currentDateTime < departureDateTime && isSelectingArrivalDate); 
-    }    
-  };
+      return currentDateTime < departureDateTime && isSelectingArrivalDate; 
+    }
+    return false;
+  };  
 
   useEffect(() => {
-    checkIsInRange();
-    checkIsBeforeDeparture();
+    setIsInRange(checkIsInRange());
+    setIsBeforeDeparture(checkIsBeforeDeparture());
+    
+    // setCheckDate(checkIsSelectedDate());
+    // setIsSelected(checkDate == 1 || checkDate == 2);
+    // setIsDepartureDate(checkDate == 1);
+    // setIsArrivalDate(checkDate == 2);
+    if(isSelected)
+    {
+      console.log("selected" + new Date(Year, Month, CurrentDate));
+    }
+    if(isDepartureDate)
+    {
+      console.log("departure date" + new Date(Year, Month, CurrentDate));
+    }
+    if(isArrivalDate)
+    {
+      console.log("arrival date" + new Date(Year, Month, CurrentDate));
+    }
   }, [departureDate, arrivalDate]);
 
   useEffect(()=>{
-    checkIsBeforeDeparture();
+    //checkIsBeforeDeparture();
   });
 
   return (        
     <td className={`ek-datepicker__day ${isPassed || isBeforeDeparture ? 'ek-datepicker__day--inactive' : ''} 
       ${IsToday ? 'ek-datepicker__today' : ''} 
-      ${isSelected && isDepartureDate? 'ek-datepicker__day--start' : ''} 
+      ${isSelected && isDepartureDate ? 'ek-datepicker__day--start' : ''} 
       ${isSelected && isArrivalDate ? 'ek-datepicker__day--end' : ''} 
       ${isInRange ? 'ek-datepicker__day-range' : ''}`}>
       <a data-value={CurrentDate} data-passed={isPassed} onClick={onDateClick}>{CurrentDate}</a>
