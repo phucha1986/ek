@@ -26,7 +26,7 @@ const EKCalendars = () => {
   
   const wrapperRef = useRef(null);  
 
-  function next() {
+  const next = () => {
     setCurrentYear((currentMonth === 11) ? currentYear + 1 : currentYear);
     setCurrentMonth((currentMonth + 1) % 12);    
 
@@ -34,13 +34,18 @@ const EKCalendars = () => {
     setNextMonth((nextMonth + 1) % 12);
   }
 
-  function previous() {
+  const previous = () => {
     setCurrentYear((currentMonth === 0) ? currentYear - 1 : currentYear);
     setCurrentMonth((currentMonth === 0) ? 11 : currentMonth - 1);  
 
     setNextMonthYear((nextMonth === 0) ? nextMonthYear - 1 : nextMonthYear);
     setNextMonth((nextMonth === 0) ? 11 : nextMonth - 1);
   }
+
+  const onOneWayClick = () =>
+  {
+    
+  };
 
   const onChangeMonthClick = (month) => {
     if(month == 1)
@@ -84,7 +89,7 @@ const EKCalendars = () => {
                 <div className="checkbox__checkmark"></div>My dates are flexible (-/+ 3 days)
               </label>
               <label className="checkbox one-way">
-                <input type="checkbox" className="checkbox__input js-one-way control__one-way"/>
+                <input type="checkbox" className="checkbox__input js-one-way control__one-way" onClick={onOneWayClick}/>
                 <div className="checkbox__checkmark"></div>One way
               </label>
             </div>

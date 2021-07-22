@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { MONTHS } from "../../data/calendar";
 import EKCalendarCell from "./EKCalendarCell";
 import { EKDatePickerContext } from "./EKDatePickerContext";
 
@@ -36,11 +35,9 @@ const EKCalendar = (params) => {
         return emptyTD;
       }
       else{               
-        let isToday = date == today.getDate() && Year == today.getFullYear() && Month == today.getMonth();
-        let isPassed = date < today.getDate() && Year == today.getFullYear() && Month == today.getMonth();        
-        let key = `${date}_${Month}_${Year}`;
-        //console.log(key);
-        let result = <EKCalendarCell key={key} IsToday={isToday} CurrentDate={date} IsPassed={isPassed} Month={Month} Year={Year} />
+        let isToday = date == today.getDate() && Year == today.getFullYear() && Month == today.getMonth();            
+        let key = `${date}_${Month}_${Year}`;        
+        let result = <EKCalendarCell key={key} IsToday={isToday} CurrentDate={date} Month={Month} Year={Year} />
         date++;
         return result;
       }      
