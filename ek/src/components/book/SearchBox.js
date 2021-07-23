@@ -94,12 +94,8 @@ function SearchBox() {
                                                 </div>                                                
                                             </div>
                                             <div className="search-flight--hidden-container grid">
-                                                <div className="grid__item medium--one-third search-flight__passengers passenger-error">
-                                                    <div className="js-dropdown dropdown-container dropdown-container--has-help">
-                                                        <div className="js-passenger">
-                                                            <EKPassengerDropdown Title="Passengers" Default="1 Passenger"/> 
-                                                        </div>
-                                                    </div>
+                                                <div className="grid__item medium--one-third search-flight__passengers">                                                    
+                                                        <EKPassengerDropdown Title="Passengers" Default="1 Passenger"/>                                                     
                                                     <div className="js-dropdown dropdown-container dropdown-container--contextual-help">
                                                         <div className="contextual-help js-dropdown-open-hover">
                                                             <button className="cta  cta--component contextual-help " type="button" role="link" aria-label="Passenger's Information" aria-expanded="true">
