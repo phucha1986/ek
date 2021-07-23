@@ -1,6 +1,13 @@
 import SearchBox from "./SearchBox";
 import React, { useEffect } from 'react';
 import CovidInformation from "../commons/CovidInformation";
+import StatementWiget from "../myaccount/StatementWiget";
+import ProductWiget from "../myaccount/ProductWiget";
+import ExperienceBlock from "./ExperienceBlock";
+import LocalMarket from "./LocalMarket";
+import FeaturedLocation from "./FeaturedLocation";
+import LocalMarketStudent from "./LocalMarketStudent";
+import AboutUs from "./AboutUs";
 
 
 function BookAFlight() {
@@ -13,7 +20,14 @@ function BookAFlight() {
         <>
             {/* <Title />             */}
             <SearchBox />
-            <CovidInformation />
+            <StatementWiget />
+            <ProductWiget />
+            <ExperienceBlock />
+            <LocalMarket />
+            <FeaturedLocation />
+            <LocalMarketStudent />
+            <AboutUs />
+            {/* <CovidInformation /> */}
         </>
     );
   }

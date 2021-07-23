@@ -1,0 +1,107 @@
+import EKDropdownPopup from "./EKDropdownPopup";
+import React, { useEffect, useState } from 'react';
+
+const EKPassengerDropdown = (params) => {  
+  const { CurrentLocation } = params;
+  const [showingDropdownPopup, setShowingDropdownPopup] = useState(false);
+  const [isDropDownItemFocus, setIsDropDownItemFocus] = useState(false);
+  const [title, setTitle] = useState(params.Title);
+  const [selectedItem, setSelectedItem] = useState(null);//useState(params.Items.find(item => item.IsSelected));
+  const [isSearching, setIsSearching] = useState(false);
+  const [currentLocationSelected, setCurrentLocationSelected] = useState(false);
+  const [firstItemToBeSelected, setFirstItemToBeSelected] = useState(null);
+  const getDescriptions = item => 
+  {        
+    return params.Default;//item != null ? `${item.City}, (${item.AirportCode})` : '';    
+  }
+  const [descriptions, setDescriptions] = useState(params.Default);  
+  
+  const onDropdownFocus = event =>
+  {    
+    event.target.select();
+    setIsDropDownItemFocus(true);
+    setShowingDropdownPopup(true);    
+  }
+
+  useEffect(() => {
+    setIsSearching(false);
+    if(selectedItem)
+    {      
+      setDescriptions(getDescriptions(selectedItem));      
+      setCurrentLocationSelected(CurrentLocation && selectedItem.AirportCode == CurrentLocation.AirportCode);
+      
+    }else{
+      setDescriptions(params.Default);
+      setCurrentLocationSelected(false);
+    }    
+  }, [selectedItem]); 
+
+  const onChange = event =>
+  {   
+    setDescriptions(event.target.value);
+    if(!event.target.value)
+    {
+      setSelectedItem(null);
+    }
+  };
+
+  const onDelete = () =>
+  {    
+    setSelectedItem(null);
+  };
+
+  const onKeyDown = event =>
+  {    
+    if (event.keyCode === 13) {      
+    } else if (event.keyCode === 38) {
+     
+    }
+    // User pressed the down arrow, increment the index
+    else if (event.keyCode === 40) { 
+    }
+    else if (event.shiftKey && event.keyCode == 9 || event.keyCode == 9) {     
+      //setIsSearching(false);
+    }
+    else{
+      setIsSearching(true);      
+    }
+  }
+
+  const onDropdownItemBlur = () =>
+  {        
+    setTimeout(function(){
+      // if(showingDropdownPopup && !isDropDownItemFocus)
+      // {
+        setIsSearching(false);
+        setIsDropDownItemFocus(false);
+        setShowingDropdownPopup(false);        
+        if(descriptions.length &&  selectedItem && descriptions != getDescriptions(selectedItem))
+        {
+          setSelectedItem(firstItemToBeSelected);
+        }
+      //}
+    }, 100);
+  }
+  
+
+  return (
+    <div className={`js-dropdown-v2 dropdown-container selected ${currentLocationSelected ? 'location-icon-show' : ''} ${showingDropdownPopup ? 'show' : ''}`}>
+      <div className="js-origin-dropdown">
+        <div className="dropdown__input-container js-dropdown-open">
+          <div className={`field js-fields ${!descriptions.length && !showingDropdownPopup? 'field--focus': 'field--active'}`}>
+            <label className="field__text" for="48c3d056-13f6-455b-adbe-ef94e244b421" tabindex="-1">{title}</label>
+            <input className="js-field-input field__input js-dropdown-open field__input--active" type="component" name="Departure airport"  autocomplete="off"  id="48c3d056-13f6-455b-adbe-ef94e244b421" aria-autocomplete="inline" aria-live="off" aria-expanded="true" value={descriptions} onChange={onChange} onKeyDown={onKeyDown}/>            
+            {/* onFocus={onDropdownFocus} onBlur={onDropdownItemBlur} */}
+            <a href="javascript:void(0)" className="clear-x-mobile js-drop-open dropdown__clear dropdown__clear--toggle" name="toggle Passengers" aria-expanded="false" aria-hidden="true" tabindex="-1" onClick={onDelete}>
+              <span className="js-toggle-text icon icon-chevron-down" aria-hidden="true"></span>
+            </a>
+          </div>
+          {currentLocationSelected && <i className="icon icon-location dropdown__location--icon"></i>}
+        </div>
+        {/* <EKDropdownPopup Items={params.Items} isDropDownItemFocus={isDropDownItemFocus} setIsDropDownItemFocus={setIsDropDownItemFocus}  ShowingDropdownPopup={showingDropdownPopup} SetSelectedItem={setSelectedItem} CurrentLocation={CurrentLocation} SearchText={descriptions} IsSearching={isSearching} SetFirstItemToBeSelected={setFirstItemToBeSelected} /> */}
+      </div>
+    </div>    
+  );
+}
+
+export default EKPassengerDropdown;

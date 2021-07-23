@@ -105,7 +105,7 @@ function EKHeader(params) {
                         <div className="ek-account-popup-body--inner">
                           <div className="ek-account-afterlogin">
                             <h2>Welcome to Emirates Skywards</h2>
-                            <span data-mask="true" className="account-user">Mr Phuc Ha</span>
+                            <span data-mask="true" className="account-user">Mr {isAuthenticated ? user.userName : ''}</span>
                             <div className="ek-account-mobile-tabs" aria-hidden="true">
                               <div id="skywards-tab" className="js-account-mobile-tab-panel account-mobile-tabpanel active">
                                 <div className="js-account-tab-title account-tab-title skywards-tab">
@@ -117,7 +117,7 @@ function EKHeader(params) {
                             <div className="ek-account-details js-ek-account-details  no-btm-border ">
                               <div id="skywards-section" className="js-ek-account-column ek-account-column active-tab">
                                 <div className="ek-account-user-mobile ">
-                                  <span data-mask="true" className="">Mr Phuc Ha</span>
+                                  <span data-mask="true" className="">Mr {isAuthenticated ? user.userName : ''}</span>
                                   <span className="ek-account-tier skywards">Blue</span>
                                 </div>
                               <span className="account-details-column account-name account-name-tab mobile-hidden-column no-wrap">   Emirates Skywards</span>

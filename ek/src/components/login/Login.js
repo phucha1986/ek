@@ -21,14 +21,14 @@ function Login(params) {
     document.title = "Login to Emirates";
     if(isAuthenticated)
     {
-      history.push("/Account");
+      history.push("/");
     }
   }, []);
 
   useEffect(() => {
     if(isAuthenticated)
     {
-      history.push("/Account");
+      history.push("/");
     }
   }, [isAuthenticated]);
 

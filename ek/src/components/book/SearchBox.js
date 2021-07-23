@@ -3,6 +3,8 @@ import { EKDatePicker } from "../commons/EKDatePicker";
 import EKCheckbox from "../commons/EKCheckbox";
 import { departureAirports, arrivalAirports, currentLocation } from "../../data/book";
 import { EKDatePickerProvider } from "../commons/EKDatePickerContext";
+import EKButton from "../commons/EKButton";
+import EKPassengerDropdown from "../commons/EKPassengerDropdown";
 
 function SearchBox() {
     
@@ -90,6 +92,32 @@ function SearchBox() {
                                                         <EKDatePicker />
                                                     </EKDatePickerProvider>
                                                 </div>                                                
+                                            </div>
+                                            <div className="search-flight--hidden-container grid">
+                                                <div className="grid__item medium--one-third search-flight__passengers passenger-error">
+                                                    <div className="js-dropdown dropdown-container dropdown-container--has-help">
+                                                        <div className="js-passenger">
+                                                            <EKPassengerDropdown Title="Passengers" Default="1 Passenger"/> 
+                                                        </div>
+                                                    </div>
+                                                    <div className="js-dropdown dropdown-container dropdown-container--contextual-help">
+                                                        <div className="contextual-help js-dropdown-open-hover">
+                                                            <button className="cta  cta--component contextual-help " type="button" role="link" aria-label="Passenger's Information" aria-expanded="true">
+                                                                <span className="js-label cta__text"></span>
+                                                                <i className="icon icon-information"></i>
+                                                            </button>
+                                                            <div className="contextual-help__dropdown-arrow"></div>
+                                                        </div>
+                                                    </div>                                                    
+                                                </div>
+                                                <div className="grid__item medium--one-third search-flight__class">                                                        
+                                                    <EKPassengerDropdown Title="Class" Default="Economy Class"/>                                                        
+                                                </div>
+                                                <div className="grid__item medium--one-third">
+                                                    <button className="cta cta--large cta--primary js-widget-submit " type="submit">
+                                                        <span className="js-label cta__text">Search flights</span>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className=""></div>
