@@ -30,7 +30,7 @@ function LandingPageHeader(params) {
       history.push('/');
     }else{
       let userObject = localStorage.getItem('user');
-      if(userObject.length)
+      if(userObject && userObject.length)
       {
         setUser(JSON.parse(userObject));
       }
@@ -58,7 +58,7 @@ function LandingPageHeader(params) {
 
   useEffect(() => {    
     let userObject = localStorage.getItem('user');
-    if(userObject.length)
+    if(userObject && userObject.length)
     {
       setUser(JSON.parse(userObject));
     }

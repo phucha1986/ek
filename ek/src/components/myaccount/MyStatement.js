@@ -7,7 +7,7 @@ function MyStatement() {
   useEffect(() => {
     document.title = "My Statement  | Account | Emirates Skywards | Emirates Vietnam";
     let userObject = localStorage.getItem('user');
-    if(userObject.length)
+    if(userObject && userObject.length)
     {
       setUser(JSON.parse(userObject));
     }

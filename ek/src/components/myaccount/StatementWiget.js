@@ -8,7 +8,7 @@ function StatementWiget(params) {
     useEffect(() => {
         console.log("isauthenticated " + isAuthenticated);
         let userObject = localStorage.getItem('user');
-        if (userObject.length) {
+        if (userObject && userObject.length) {
           setUser(JSON.parse(userObject));
         }else{
           setUser('');
