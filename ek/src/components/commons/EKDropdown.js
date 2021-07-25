@@ -24,16 +24,9 @@ const EKDropdown = (params) => {
   }
 
   useEffect(() => {
+    setDescriptions(getDescriptions(selectedItem));
+    setCurrentLocationSelected(CurrentLocation && selectedItem && selectedItem.AirportCode == CurrentLocation.AirportCode);          
     setIsSearching(false);
-    if(selectedItem)
-    {      
-      setDescriptions(getDescriptions(selectedItem));      
-      setCurrentLocationSelected(CurrentLocation && selectedItem.AirportCode == CurrentLocation.AirportCode);
-      
-    }else{
-      setDescriptions('');
-      setCurrentLocationSelected(false);
-    }    
   }, [selectedItem]); 
 
   const onChange = event =>
@@ -63,24 +56,25 @@ const EKDropdown = (params) => {
       //setIsSearching(false);
     }
     else{
-      setIsSearching(true);      
+      setIsSearching(true);
+      setSelectedItem(null);
     }
   }
 
   const onDropdownItemBlur = () =>
   {        
-    setTimeout(function(){
-      // if(showingDropdownPopup && !isDropDownItemFocus)
-      // {
-        setIsSearching(false);
-        setIsDropDownItemFocus(false);
-        setShowingDropdownPopup(false);        
-        if(descriptions.length &&  selectedItem && descriptions != getDescriptions(selectedItem))
-        {
-          setSelectedItem(firstItemToBeSelected);
-        }
-      //}
-    }, 100);
+    // setTimeout(function(){
+    //   // if(showingDropdownPopup && !isDropDownItemFocus)
+    //   // {
+    //     setIsSearching(false);
+    //     setIsDropDownItemFocus(false);
+    //     setShowingDropdownPopup(false);        
+    //     if(descriptions.length &&  selectedItem && descriptions != getDescriptions(selectedItem))
+    //     {
+    //       setSelectedItem(firstItemToBeSelected);
+    //     }
+    //   //}
+    // }, 100);
   }
   
 
@@ -89,13 +83,13 @@ const EKDropdown = (params) => {
       <div className="js-origin-dropdown">
         <div className="dropdown__input-container js-dropdown-open">
           <div className={`field js-fields ${!descriptions.length && !showingDropdownPopup? 'field--focus': 'field--active'}`}>
-            <label className="field__text" for="48c3d056-13f6-455b-adbe-ef94e244b421" tabindex="-1">{title}</label>
-            <input className="js-field-input field__input js-dropdown-open field__input--active" type="component" name="Departure airport"  autocomplete="off"  id="48c3d056-13f6-455b-adbe-ef94e244b421" aria-autocomplete="inline" aria-live="off" aria-expanded="true" value={descriptions} onFocus={onDropdownFocus} onBlur={onDropdownItemBlur} onChange={onChange} onKeyDown={onKeyDown}/>
+            <label className="field__text" tabindex="-1">{title}</label>
+            <input className="js-field-input field__input js-dropdown-open field__input--active" type="component" name="Departure airport"  autocomplete="off" aria-autocomplete="inline" aria-live="off" aria-expanded="true" value={descriptions} onFocus={onDropdownFocus} onBlur={onDropdownItemBlur} onChange={onChange} onKeyDown={onKeyDown}/>
             <button type="button" className="clear-x-mobile icon icon-delete-light  js-clear-selected  dropdown__clear" name="clear Departure airport" aria-hidden="true" tabindex="-1" onClick={onDelete}></button>
           </div>
           {currentLocationSelected && <i className="icon icon-location dropdown__location--icon"></i>}
         </div>
-        <EKDropdownPopup Items={params.Items} isDropDownItemFocus={isDropDownItemFocus} setIsDropDownItemFocus={setIsDropDownItemFocus}  ShowingDropdownPopup={showingDropdownPopup} SetSelectedItem={setSelectedItem} CurrentLocation={CurrentLocation} SearchText={descriptions} IsSearching={isSearching} SetFirstItemToBeSelected={setFirstItemToBeSelected} />
+        <EKDropdownPopup Items={params.Items} isDropDownItemFocus={isDropDownItemFocus} setIsDropDownItemFocus={setIsDropDownItemFocus}  showingDropdownPopup={showingDropdownPopup} setSelectedItem={setSelectedItem} currentLocation={CurrentLocation} searchText={descriptions} isSearching={isSearching} setFirstItemToBeSelected={setFirstItemToBeSelected} setShowingDropdownPopup={setShowingDropdownPopup}/>
       </div>
     </div>    
   );

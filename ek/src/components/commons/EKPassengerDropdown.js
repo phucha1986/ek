@@ -23,7 +23,7 @@ const EKPassengerDropdown = (params) => {
       <div className="js-passenger">
         <div className="dropdown__input-container js-dropdown-open">
           <div className="field js-fields field--active">
-            <label className="field__text" for="48c3d056-13f6-455b-adbe-ef94e244b421" tabindex="-1">{Title}</label>
+            <label className="field__text" tabindex="-1">{Title}</label>
             <input className="js-field-input field__input js-dropdown-open field__input--active" type="component" name="Departure airport"  autocomplete="off"  id="48c3d056-13f6-455b-adbe-ef94e244b421" aria-autocomplete="inline" aria-live="off" aria-expanded="true" value={`${totalPax} ${totalPax > 1 ? 'Passengers' : 'Passenger'}`} onFocus={onDropdownFocus} />
             
             <a href="javascript:void(0)" className="clear-x-mobile js-drop-open dropdown__clear dropdown__clear--toggle" name="toggle Passengers" aria-expanded="false" aria-hidden="true" tabindex="-1" onClick={onDelete}>

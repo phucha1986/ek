@@ -1,25 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import EKDropdownItemHightLight from './EKDropdownItemHightLight';
 
 const EKDropdownPopup = (params) => {
-  const { SetSelectedItem, CurrentLocation, SearchText, IsSearching, ShowingDropdownPopup, SetFirstItemToBeSelected} = params;  
+  const { setSelectedItem, currentLocation, searchText, isSearching, ShowingDropdownPopup: showingDropdownPopup, setFirstItemToBeSelected, setIsDropDownItemFocus, setShowingDropdownPopup} = params;
+  const wrapperRef = useRef();
 
   const remainingItems = params.Items.filter(item => (
-    item.AirportCode != (CurrentLocation ? CurrentLocation.AirportCode : ''))
+    item.AirportCode != (currentLocation ? currentLocation.AirportCode : ''))
   );
   
-  const searchItems = params.Items.filter(item => (IsSearching && SearchText.length &&
-    (item.City.search(new RegExp(SearchText, "i")) != -1 ||
-    item.AirportCode.search(new RegExp(SearchText, "i")) != -1 ||
-    item.Country.search(new RegExp(SearchText, "i")) != -1 ||
-    item.Airport.search(new RegExp(SearchText, "i")) != -1))
+  const searchItems = params.Items.filter(item => (isSearching && searchText.length &&
+    (item.City.search(new RegExp(searchText, "i")) != -1 ||
+    item.AirportCode.search(new RegExp(searchText, "i")) != -1 ||
+    item.Country.search(new RegExp(searchText, "i")) != -1 ||
+    item.Airport.search(new RegExp(searchText, "i")) != -1))
   );
 
-  const [refinedItems, setRefinedItems] = useState(IsSearching && SearchText.length ? searchItems : remainingItems);
+  const [refinedItems, setRefinedItems] = useState(isSearching && searchText.length ? searchItems : remainingItems);
 
-  const displayItems = refinedItems.map((item, i) => {    
+  const onClick = item =>
+    {
+      setSelectedItem(item);
+      setIsDropDownItemFocus(false);
+      setShowingDropdownPopup(false);
+    }
+
+  const displayItems = refinedItems.map((item, i) => {
+    
     return (
-      <EKDropdownItemHightLight Item={item} Index={i} SetSelectedItem={SetSelectedItem} key={i} SearchText={SearchText} ShowingDropdownPopup={ShowingDropdownPopup} IsSearching={IsSearching}/>
+      <EKDropdownItemHightLight Item={item} Index={i} key={i} SearchText={searchText} ShowingDropdownPopup={showingDropdownPopup} IsSearching={isSearching} onClick={() => { onClick(item);}}/>
     );
   });  
 
@@ -31,32 +40,49 @@ const EKDropdownPopup = (params) => {
   };
 
   useEffect(() => {
-    setRefinedItems(IsSearching && SearchText.length ? searchItems : remainingItems);
-  }, [SearchText, IsSearching]);
+    setRefinedItems(isSearching && searchText.length ? searchItems : remainingItems);
+  }, [searchText, isSearching]);
 
   useEffect(() => {
     if(refinedItems && refinedItems.length)
     {
-      SetFirstItemToBeSelected(refinedItems[0]);
+      setFirstItemToBeSelected(refinedItems[0]);
     }
   }, [refinedItems]);
+
+  useEffect(() => {      
+    function handleClickOutside(event) {
+        if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+          setIsDropDownItemFocus(false);
+          setShowingDropdownPopup(false);
+        }
+    }
+
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [wrapperRef]);
+
   return (    
-    <div className="dropdown">
-      {CurrentLocation && (!IsSearching || !SearchText.length)  && <section className="location global">
+    <div className="dropdown" ref={wrapperRef}>
+      {currentLocation && (!isSearching || !searchText.length)  && <section className="location global">
         <h3 className="location__global__heading">
           <i className="icon icon-location location__icon location__icon--location"></i>Current location
         </h3>
         <ol className="location__list">
-          <li tabindex="-1" className="location__item js-dropdown-select-item js-location-list pointer" onClick={() => {SetSelectedItem(CurrentLocation)}}>
+          <li tabindex="-1" className="location__item js-dropdown-select-item js-location-list pointer" onClick={() => { onClick(currentLocation);}}>
             <div tabindex="-1" className="dropdown__link js-select-body js-location-link">
               <div className="location__airport" aria-hidden="true">
                 <p className="location__airport__city" data-location-value="Ho Chi Minh City">
-                  <span>{CurrentLocation.City},</span> {CurrentLocation.Country}
+                  <span>{currentLocation.City},</span> {currentLocation.Country}
                 </p>
-                <p className="location__airport__name">{CurrentLocation.Airport}</p>
+                <p className="location__airport__name">{currentLocation.Airport}</p>
               </div>
               <i className="icon icon-tailfin-ek" aria-hidden="true"></i>
-              <p className="location__airport__acronym " aria-hidden="true">{CurrentLocation.AirportCode}</p>
+              <p className="location__airport__acronym " aria-hidden="true">{currentLocation.AirportCode}</p>
             </div>
           </li>
         </ol>

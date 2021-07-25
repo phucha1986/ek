@@ -107,7 +107,7 @@ function SearchBox() {
                                                     </div>                                                    
                                                 </div>
                                                 <div className="grid__item medium--one-third search-flight__class">                                                        
-                                                    <EKPassengerDropdown Title="Class" Default="Economy Class"/>                                                        
+                                                    {/* <EKPassengerDropdown Title="Class" Default="Economy Class"/> */}
                                                 </div>
                                                 <div className="grid__item medium--one-third">
                                                     <button className="cta cta--large cta--primary js-widget-submit " type="submit">
