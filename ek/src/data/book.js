@@ -15,5 +15,4 @@ export const arrivalAirports = [{City: 'Saigon', Country: 'Vietnam', Airport: 'T
 const passengers = [{Type: "Adult", Selected: true}, {Type: "Children"}, {Type: "Infant"}];
 const selectedPassengerDescription = `1 ${passengers.find(item => item.Selected).Type}`;
 
-const classes = [{Type: "Economy", Selected: true}, {Type: "Business"}, {Type: "First"}];
-const selectedClassDescription = `${classes.find(item => item.Selected).Type} Class`;
+export const flightClasses = [{Type: "Economy", Selected: true}, {Type: "Business"}, {Type: "First"}];

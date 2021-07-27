@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EKButton renders with prop 1`] = `
+<div
+  className="login-form__action-btn"
+>
+  <button
+    aria-disabled="false"
+    className="call-to-action call-to-action__primary call-to-action--middle"
+    id="btnTest"
+    onClick={[Function]}
+  >
+    click
+  </button>
+</div>
+`;
+
+exports[`EKButton renders without prop 1`] = `
+<div
+  className="login-form__action-btn"
+>
+  <button
+    aria-disabled="false"
+    className="call-to-action call-to-action__primary call-to-action--middle"
+    onClick={[Function]}
+  />
+</div>
+`;

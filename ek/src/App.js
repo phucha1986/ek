@@ -11,13 +11,13 @@ import EKHeader from './components/commons/EKHeader';
 import EKHero from './components/commons/EKHero';
 import EKOperationalUpdate from './components/commons/EKOperationalUpdate';
 import { headerNavigationList } from './data/navigation';
+import Test from './components/book/Test';
 
-function App(params) {  
-  const isAuthenticated = params.isAuthenticated || localStorage.getItem ('loggedIn') === "true";  
+function App(params) {    
   const location = useLocation();
   const isLoginPath = location.pathname === "/Login";
   const isAccountPath = location.pathname === "/Account";
-  const header = !isLoginPath || isAuthenticated ? <EKHeader headerNavigationList={headerNavigationList}/> : <LoginHeader />;  
+  const header = !isLoginPath || params.isAuthenticated ? <EKHeader headerNavigationList={headerNavigationList}/> : <LoginHeader />;  
 
   return (    
     <>
@@ -26,6 +26,7 @@ function App(params) {
       <main id="maincontent">
         {!isLoginPath && !isAccountPath ? <EKHero /> : ''}        
         <Route path="/Login">
+          {/* <Test /> */}
           <Login />
         </Route>
         <Route path="/Account">
@@ -45,7 +46,7 @@ function App(params) {
 
 const mapStateToProps = (state) => {
   return {
-      isAuthenticated: state.isAuthenticated
+      isAuthenticated: state.isAuthenticated || localStorage.getItem ('loggedIn') === "true"
   }
 }
 

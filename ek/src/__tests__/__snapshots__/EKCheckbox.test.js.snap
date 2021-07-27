@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EKButton renders with prop 1`] = `
+<div
+  className="checkbox-field"
+>
+  <input
+    checked={false}
+    className="checkbox__input"
+    id="chkTest"
+    name="chkTest"
+    onChange={[Function]}
+    type="checkbox"
+  />
+  <label
+    className="checkbox__text "
+    for="chkTest"
+  >
+    test check me
+  </label>
+</div>
+`;
+
+exports[`EKButton renders without prop 1`] = `
+<div
+  className="checkbox-field"
+>
+  <input
+    checked={false}
+    className="checkbox__input"
+    onChange={[Function]}
+    type="checkbox"
+  />
+  <label
+    className="checkbox__text "
+  />
+</div>
+`;

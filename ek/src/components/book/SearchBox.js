@@ -1,14 +1,13 @@
 import EKDropdown from "../commons/EKDropdown";
 import { EKDatePicker } from "../commons/EKDatePicker";
 import EKCheckbox from "../commons/EKCheckbox";
-import { departureAirports, arrivalAirports, currentLocation } from "../../data/book";
+import { departureAirports, arrivalAirports, currentLocation, flightClasses } from "../../data/book";
 import { EKDatePickerProvider } from "../commons/EKDatePickerContext";
 import EKButton from "../commons/EKButton";
 import EKPassengerDropdown from "../commons/EKPassengerDropdown";
+import EKClassDropdown from "../commons/EKClassDropdown";
 
-function SearchBox() {
-    
-    
+function SearchBox() {        
     return (
         <>
         <div className="widget js-widget">
@@ -107,7 +106,7 @@ function SearchBox() {
                                                     </div>                                                    
                                                 </div>
                                                 <div className="grid__item medium--one-third search-flight__class">                                                        
-                                                    {/* <EKPassengerDropdown Title="Class" Default="Economy Class"/> */}
+                                                    <EKClassDropdown flightClasses={flightClasses} title="Class" />
                                                 </div>
                                                 <div className="grid__item medium--one-third">
                                                     <button className="cta cta--large cta--primary js-widget-submit " type="submit">

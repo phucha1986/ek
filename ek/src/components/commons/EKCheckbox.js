@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
-const EKCheckbox = (params) => {
+const EKCheckbox = ({id, title}) => {
 
-  const[rememberMeToggle, setRememberMeToggle] = useState(false);
-  function onRememberMeToggle()
+  const[isChecked, setIsChecked] = useState(false);
+  function onToggle()
   {
-    setRememberMeToggle(!rememberMeToggle);
+    setIsChecked(!isChecked);
   }
   return (
     <div className="checkbox-field">
-      <input className="checkbox__input" id={params.id} type="checkbox" name="rememberMe" onChange={onRememberMeToggle} checked={rememberMeToggle}/>
-      <label for={params.id} className={`checkbox__text ${rememberMeToggle ? 'icon-check' : ''}`}>{params.title}
+      <input className="checkbox__input" id={id} type="checkbox" name={id} onChange={onToggle} checked={isChecked}/>
+      <label for={id} className={`checkbox__text ${isChecked ? 'icon-check' : ''}`}>{title}
       </label>
     </div> 
   );
