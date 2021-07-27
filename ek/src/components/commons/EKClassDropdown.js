@@ -26,8 +26,8 @@ const EKClassDropdown = (params) => {
   }, [selectedClass]);
 
   return (
-    <div className={`js-dropdown dropdown-container dropdown-container--has-help ${showingDropdownPopup ? 'show' : ''}`}>
-      <div className="js-passenger">
+    <div className={`js-dropdown dropdown-container mobile-bubble-dropdown js-mobile-bubble-dropdown selected ${showingDropdownPopup ? 'show' : ''}`}>
+      <div >
         <div className="dropdown__input-container js-dropdown-open">
           <div className="field js-fields field--active">
             <label className="field__text" tabindex="-1">{title}</label>
@@ -40,7 +40,7 @@ const EKClassDropdown = (params) => {
         </div>
         <EKClassDropdownPopup setShowingDropdownPopup={setShowingDropdownPopup} selectedClass={selectedClass} setSelectedClass={setSelectedClass} flightClasses={flightClasses}/>
       </div>
-    </div>    
+    </div>
   );
 }
 

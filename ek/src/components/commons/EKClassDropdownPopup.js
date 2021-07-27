@@ -11,7 +11,7 @@ const EKClassDropdownPopup = ({ selectedClass, setSelectedClass, flightClasses, 
 
   var items = flightClasses && flightClasses.length ? flightClasses.map((item, i) => {
     return <a onClick={() => { onItemSelected(item); }} tabindex="-1" role="option" aria-selected="true" className={`class-dropdown__link js-dropdown-select-item ${selectedClass.Type == item.Type ? 'active' : ''}`}>
-      <p>{item.Type}</p>
+      <p>{item.Type} Class</p>
       <i className="class-dropdown__icon icon-check-thick"></i>
     </a>
   }) : null;
