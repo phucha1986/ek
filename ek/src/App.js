@@ -11,7 +11,6 @@ import EKHeader from './components/commons/EKHeader';
 import EKHero from './components/commons/EKHero';
 import EKOperationalUpdate from './components/commons/EKOperationalUpdate';
 import { headerNavigationList } from './data/navigation';
-import Test from './components/book/Test';
 
 function App(params) {
   const location = useLocation();
@@ -20,27 +19,28 @@ function App(params) {
   const header = !isLoginPath || params.isAuthenticated ? <EKHeader headerNavigationList={headerNavigationList} /> : <LoginHeader />;
 
   return (
-    <>
-      {!isLoginPath && !isAccountPath ? <EKOperationalUpdate /> : ''}
-      {params.isAuthenticated &&
-        (header) &&
-        (<main id="maincontent">
-          {!isLoginPath && !isAccountPath ? <EKHero /> : ''}
-          <Route path="/Login">
-            {/* <Test /> */}
-            <Login />
-          </Route>
-          <Route path="/Account">
-            <MyStatement />
-          </Route>
-          <Route path="/Book">
-            <BookAFlight />
-          </Route>
-          <Route exact path="/">
-            <BookAFlight />
-          </Route>
-        </main>)
-          (<Footer />)
+    <>      
+      {params.isAuthenticated ?
+        (<>
+          {!isLoginPath && !isAccountPath ? <EKOperationalUpdate /> : ''}
+          {header} &&
+          <main id="maincontent">
+            {!isLoginPath && !isAccountPath ? <EKHero /> : ''}
+            <Route path="/Login">
+              <Login />
+            </Route>
+            <Route path="/Account">
+              <MyStatement />
+            </Route>
+            <Route path="/Book">
+              <BookAFlight />
+            </Route>
+            <Route exact path="/">
+              <BookAFlight />
+            </Route>
+          </main>
+          <Footer />
+        </>) : <Login />
       }
     </>
   );
