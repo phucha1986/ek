@@ -12,8 +12,8 @@ import '../../css/vendor.css';
 
 function Login(params) {  
   const [errorList, setErrorList] = useState([]);  
-  const [userNameValue, setUserNameValue] = useState('EK619931045');
-  const [passwordValue, setPasswordValue] = useState('test');
+  const [userNameValue, setUserNameValue] = useState('EK123456789');
+  const [passwordValue, setPasswordValue] = useState('');
   const isAuthenticated = params.isAuthenticated || localStorage.getItem ('loggedIn') === "true";
   const history = useHistory();
 
@@ -46,7 +46,7 @@ function Login(params) {
     {      
       setErrorList(current => ([...current, "Password: This is a mandatory field, please check and try again. "]));
       result = false;
-    }    
+    }
     return result;
   };
 

@@ -1,7 +1,7 @@
 const loggedInAction = () => ({ type: 'loggedIn', payload: { userName: 'Antonio', id: 'EK 619 931 045'}});
 
 const fakeLoginAPI = (userNameValue, passwordValue) => {
-    if(userNameValue === "EK619931045" && passwordValue !== "")
+    if(userNameValue === "EK123456789" && passwordValue === "123456")
     {
         return new Promise(resolve => setTimeout(function(){resolve("OK")}, 3000));
     }else{
