@@ -22,8 +22,9 @@ function App(params) {
   return (    
     <>
       {!isLoginPath && !isAccountPath ? <EKOperationalUpdate /> : ''}
-      {header}      
-      <main id="maincontent">
+      {params.isAuthenticated && 
+      (header) && 
+      (<main id="maincontent">
         {!isLoginPath && !isAccountPath ? <EKHero /> : ''}        
         <Route path="/Login">
           {/* <Test /> */}
@@ -38,7 +39,7 @@ function App(params) {
         <Route exact path="/">
           <BookAFlight/>
         </Route>
-      </main>
+      </main>)}
       <Footer />
     </>    
   );
