@@ -5,7 +5,7 @@ import MyStatement from './components/myaccount/MyStatement';
 import Login from './components/login/Login';
 import React from 'react';
 import BookAFlight from './components/book/BookAFlight';
-import { Route, useLocation} from 'react-router-dom';
+import { Route, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import EKHeader from './components/commons/EKHeader';
 import EKHero from './components/commons/EKHero';
@@ -13,41 +13,42 @@ import EKOperationalUpdate from './components/commons/EKOperationalUpdate';
 import { headerNavigationList } from './data/navigation';
 import Test from './components/book/Test';
 
-function App(params) {    
+function App(params) {
   const location = useLocation();
   const isLoginPath = location.pathname === "/Login";
   const isAccountPath = location.pathname === "/Account";
-  const header = !isLoginPath || params.isAuthenticated ? <EKHeader headerNavigationList={headerNavigationList}/> : <LoginHeader />;  
+  const header = !isLoginPath || params.isAuthenticated ? <EKHeader headerNavigationList={headerNavigationList} /> : <LoginHeader />;
 
-  return (    
+  return (
     <>
       {!isLoginPath && !isAccountPath ? <EKOperationalUpdate /> : ''}
-      {params.isAuthenticated && 
-      (header) && 
-      (<main id="maincontent">
-        {!isLoginPath && !isAccountPath ? <EKHero /> : ''}        
-        <Route path="/Login">
-          {/* <Test /> */}
-          <Login />
-        </Route>
-        <Route path="/Account">
-          <MyStatement />
-        </Route>
-        <Route path="/Book">
-          <BookAFlight/>
-        </Route>
-        <Route exact path="/">
-          <BookAFlight/>
-        </Route>
-      </main>)}
-      <Footer />
-    </>    
+      {params.isAuthenticated &&
+        (header) &&
+        (<main id="maincontent">
+          {!isLoginPath && !isAccountPath ? <EKHero /> : ''}
+          <Route path="/Login">
+            {/* <Test /> */}
+            <Login />
+          </Route>
+          <Route path="/Account">
+            <MyStatement />
+          </Route>
+          <Route path="/Book">
+            <BookAFlight />
+          </Route>
+          <Route exact path="/">
+            <BookAFlight />
+          </Route>
+        </main>)
+          (<Footer />)
+      }
+    </>
   );
 }
 
 const mapStateToProps = (state) => {
   return {
-      isAuthenticated: state.isAuthenticated || localStorage.getItem ('loggedIn') === "true"
+    isAuthenticated: state.isAuthenticated || localStorage.getItem('loggedIn') === "true"
   }
 }
 
